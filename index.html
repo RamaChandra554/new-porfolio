@@ -349,7 +349,7 @@
             border: 2px solid rgba(255, 255, 255, 0.1);
         }
 
-        .about-image::before {
+        /* .about-image::before {
             content: '';
             position: absolute;
             width: 100%;
@@ -359,7 +359,7 @@
             top: 20px;
             left: 20px;
             z-index: 1;
-        }
+        } */
 
         /* Infinite Horizontal Skills Section */
         .skills-horizontal-section {
@@ -1140,7 +1140,7 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Hi, I'm <span>Your Name</span></h1>
+            <h1>Hi, I'm <span>RamaChandra </span></h1>
             <p>I'm a passionate web developer specializing in creating beautiful, interactive experiences with modern
                 web technologies.</p>
             <div class="hero-buttons">
@@ -1160,15 +1160,19 @@
         <h2 class="section-title hidden">About Me</h2>
         <div class="about-content">
             <div class="about-text hidden">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu
-                    sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
-                <p>Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse
-                    dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere.</p>
-                <p>Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim
-                    congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet.</p>
+                <p>Let me introduce myself.</p>
+                <p>I'm Ramachandra rao. 
+                    <br>
+                    <span>Front-end Developer,</span>
+                    <span>UI/UX Designer,</span>
+                    <span>Web Developer and</span>
+                    <span>Web Designer</span>
+                </p>
+                <p>I bring strong technical skills, creativity, and a user-centric approach to design,
+                    ensuring seamless and engaging experiences. With a passion for learning and adaptability, I stay updated with industry trends, prioritize clear communication, and approach problem-solving proactively to deliver high-quality results.</p>
             </div>
             <div class="about-image hidden">
-                <img src="https://via.placeholder.com/400" alt="Profile Image" class="profile-img">
+                <img src="./images/profile-pic.jpg" alt="Profile Image" class="profile-img">
             </div>
         </div>
     </section>
@@ -1192,10 +1196,18 @@
                 <div class="horizontal-skill-icon">🎨</div>
                 <h3>Photoshop/illustrater</h3>
             </div>
+            <div class="horizontal-skill-card glass">
+                <div class="horizontal-skill-icon">🎨</div>
+                <h3>Illustrater</h3>
+            </div>
 
             <div class="horizontal-skill-card glass">
                 <div class="horizontal-skill-icon">🎨</div>
                 <h3>Figma</h3>
+            </div>
+            <div class="horizontal-skill-card glass">
+                <div class="horizontal-skill-icon">💻</div>
+                <h3>WordPress</h3>
             </div>
 
             <!-- Duplicate items for seamless looping -->
@@ -1213,11 +1225,19 @@
             </div>
             <div class="horizontal-skill-card glass">
                 <div class="horizontal-skill-icon">🎨</div>
-                <h3>Photoshop/illustrater</h3>
+                <h3>Photoshop</h3>
+            </div>
+            <div class="horizontal-skill-card glass">
+                <div class="horizontal-skill-icon">🎨</div>
+                <h3>Illustrater</h3>
             </div>
             <div class="horizontal-skill-card glass">
                 <div class="horizontal-skill-icon">🎨</div>
                 <h3>Figma</h3>
+            </div>
+            <div class="horizontal-skill-card glass">
+                <div class="horizontal-skill-icon">💻</div>
+                <h3>WordPress</h3>
             </div>
         </div>
     </div>
@@ -1233,7 +1253,7 @@
                         <strong>HTML & CSS</strong>
                     </li>
                     <li>
-                        <div class="progress percent75"><span>70%</span></div>
+                        <div class="progress percent70"><span>70%</span></div>
                         <strong>JavaScript</strong>
                     </li>
                     
@@ -1247,7 +1267,15 @@
                     </li>
                     <li>
                         <div class="progress percent80"><span>80%</span></div>
-                        <strong>Photoshop, illustrater & XD</strong>
+                        <strong>Photoshop</strong>
+                    </li>
+                    <li>
+                        <div class="progress percent80"><span>80%</span></div>
+                        <strong>illustrater</strong>
+                    </li>
+                    <li>
+                        <div class="progress percent70"><span>70%</span></div>
+                        <strong>Adobe XD</strong>
                     </li>
                     <li>
                         <div class="progress percent80"><span>80%</span></div>
@@ -1271,7 +1299,7 @@
     <!-- Projects Section -->
     <section id="projects" class="projects-section">
         <h2 class="section-title hidden">My Projects</h2>
-
+    
         <!-- Project Filters -->
         <div class="project-filters hidden">
             <button class="filter-btn active" data-filter="all">All</button>
@@ -1280,110 +1308,282 @@
             <button class="filter-btn" data-filter="wordpress">WordPress</button>
             <button class="filter-btn" data-filter="figma">Figma</button>
         </div>
-
+    
         <!-- Design Subfilters -->
         <div class="design-subfilters">
             <button class="subfilter-btn" data-subfilter="logos">Logos</button>
             <button class="subfilter-btn" data-subfilter="flyers">Flyers</button>
             <button class="subfilter-btn" data-subfilter="posters">Posters</button>
-            <button class="subfilter-btn" data-subfilter="other-design">Others</button>
+            <button class="subfilter-btn" data-subfilter="infographics">Others</button>
         </div>
-
+    
         <!-- Projects Container -->
         <div class="projects-container">
-            <!-- Development Projects -->
+            <!-- ========== DEVELOPMENT PROJECTS ========== -->
             <div class="project-card glass active" data-category="development">
-                <img src="https://via.placeholder.com/600x400" alt="Project 1" class="project-image">
+                <img src="./images/portfolio/React-ecom.png" alt="React Ecommerce" class="project-image">
                 <div class="project-info">
-                    <h3>E-commerce Website</h3>
-                    <p>A fully responsive e-commerce platform with payment integration.</p>
+                    <h3>React Ecommerce</h3>
+                    <p>An e-commerce website built with React for seamless shopping experiences.</p>
                     <div class="project-tags">
                         <span class="tag">React</span>
-                        <span class="tag">Node.js</span>
-                        <span class="tag">MongoDB</span>
+                        <span class="tag">Material UI</span>
                     </div>
-                    <a href="#" class="btn btn-primary">View Project</a>
+                    <a href="https://ramachandra554.github.io/mymobiles/" class="btn btn-primary">Live Demo</a>
                 </div>
             </div>
-
+    
             <div class="project-card glass active" data-category="development">
-                <img src="https://via.placeholder.com/600x400" alt="Project 2" class="project-image">
+                <img src="./images/portfolio/JS-Ecom.png" alt="JS Ecommerce" class="project-image">
                 <div class="project-info">
-                    <h3>Task Management App</h3>
-                    <p>A productivity app for managing tasks with drag-and-drop functionality.</p>
+                    <h3>JS Ecommerce</h3>
+                    <p>A modern e-commerce platform developed using JavaScript technologies.</p>
                     <div class="project-tags">
-                        <span class="tag">Vue.js</span>
-                        <span class="tag">Firebase</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Bootstrap</span>
                     </div>
-                    <a href="#" class="btn btn-primary">View Project</a>
+                    <a href="https://ramachandra554.github.io/Js-ecom/" class="btn btn-primary">Live Demo</a>
                 </div>
             </div>
-
-            <!-- Design Projects -->
-            <div class="project-card glass active" data-category="design" data-subcategory="logos">
-                <img src="https://via.placeholder.com/600x400" alt="Project 3" class="project-image">
+    
+            <div class="project-card glass active" data-category="development">
+                <img src="./images/portfolio/RBank.png" alt="R Bank" class="project-image">
                 <div class="project-info">
-                    <h3>Brand Logo Design</h3>
-                    <p>Modern logo design for a tech startup.</p>
+                    <h3>R Bank</h3>
+                    <p>A banking website with modern web technologies for improved user experience.</p>
+                    <div class="project-tags">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">HTML/CSS</span>
+                    </div>
+                    <a href="https://ramachandra554.github.io/Rambank/" class="btn btn-primary">Live Demo</a>
+                </div>
+            </div>
+    
+            <!-- ========== DESIGN: LOGOS ========== -->
+            <div class="project-card glass active" data-category="design" data-subcategory="logos">
+                <img src="./images/portfolio/Golden-Raio's.jpg" alt="Golden Ratio Logos" class="project-image">
+                <div class="project-info">
+                    <h3>Golden Ratio Logos</h3>
+                    <p>Logo designs inspired by the golden ratio for perfect proportions.</p>
                     <div class="project-tags">
                         <span class="tag">Illustrator</span>
                         <span class="tag">Branding</span>
                     </div>
-                    <a href="#" class="btn btn-primary">View Project</a>
+                    <a href="#" class="btn btn-primary">View Details</a>
                 </div>
             </div>
-
-            <div class="project-card glass active" data-category="design" data-subcategory="flyers">
-                <img src="https://via.placeholder.com/600x400" alt="Project 4" class="project-image">
+    
+            <div class="project-card glass active" data-category="design" data-subcategory="logos">
+                <img src="./images/portfolio/LOGOS.jpg" alt="Logo Collection" class="project-image">
                 <div class="project-info">
-                    <h3>Event Flyer</h3>
-                    <p>Promotional flyer for a music festival.</p>
+                    <h3>Logo Collection</h3>
+                    <p>Creative logo designs tailored to represent unique brand identities.</p>
                     <div class="project-tags">
-                        <span class="tag">Photoshop</span>
-                        <span class="tag">Print</span>
+                        <span class="tag">Illustrator</span>
+                        <span class="tag">Branding</span>
                     </div>
-                    <a href="#" class="btn btn-primary">View Project</a>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+    
+            
+            <!-- ========== DESIGN: POSTERS ========== -->
+            <div class="project-card glass active" data-category="design" data-subcategory="posters">
+                <img src="./images/portfolio/Burger-illus.jpg" alt="Burger Poster" class="project-image">
+                <div class="project-info">
+                    <h3>Burger Poster</h3>
+                    <p>Animated poster design for a burger restaurant campaign.</p>
+                    <div class="project-tags">
+                        <span class="tag">After Effects</span>
+                        <span class="tag">Food</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">View Details</a>
                 </div>
             </div>
 
             <div class="project-card glass active" data-category="design" data-subcategory="posters">
-                <img src="https://via.placeholder.com/600x400" alt="Project 5" class="project-image">
+                <img src="./images/portfolio/Dodge-poster.png" alt="Dodge Poster" class="project-image">
                 <div class="project-info">
-                    <h3>Movie Poster</h3>
-                    <p>Concept poster for an independent film.</p>
+                    <h3>Dodge Car Poster</h3>
+                    <p>A dynamic and engaging poster design for the Dodge brand.</p>
                     <div class="project-tags">
-                        <span class="tag">Illustrator</span>
-                        <span class="tag">Typography</span>
+                        <span class="tag">Photoshop</span>
+                        <span class="tag">Automotive</span>
                     </div>
-                    <a href="#" class="btn btn-primary">View Project</a>
+                    <a href="#" class="btn btn-primary">View Details</a>
                 </div>
             </div>
 
-            <!-- WordPress Projects -->
-            <div class="project-card glass active" data-category="wordpress">
-                <img src="https://via.placeholder.com/600x400" alt="Project 6" class="project-image">
+             <div class="project-card glass active" data-category="design" data-subcategory="posters">
+                <img src="./images/portfolio/GD-22.gif" alt="Travel Poster" class="project-image">
                 <div class="project-info">
-                    <h3>Corporate Website</h3>
-                    <p>WordPress site for a financial services company.</p>
+                    <h3>Travel Poster</h3>
+                    <p>Vibrant poster design for travel and adventure campaigns.</p>
+                    <div class="project-tags">
+                        <span class="tag">Illustrator</span>
+                        <span class="tag">Tourism</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+    
+            <div class="project-card glass active" data-category="design" data-subcategory="posters">
+                <img src="./images/portfolio/poster-burger.gif" alt="Burger Poster" class="project-image">
+                <div class="project-info">
+                    <h3>Burger Poster</h3>
+                    <p>Animated poster design for a burger restaurant campaign.</p>
+                    <div class="project-tags">
+                        <span class="tag">After Effects</span>
+                        <span class="tag">Food</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+    
+            <!-- ========== DESIGN: INFOGRAPHICS ========== -->
+            <div class="project-card glass active" data-category="design" data-subcategory="infographics">
+                <img src="./images/portfolio/business-info.jpg" alt="Business Infographics" class="project-image">
+                <div class="project-info">
+                    <h3>Business Infographics</h3>
+                    <p>Infographics showcasing business data in a visually appealing way.</p>
+                    <div class="project-tags">
+                        <span class="tag">Illustrator</span>
+                        <span class="tag">Data Visualization</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+    
+            <div class="project-card glass active" data-category="design" data-subcategory="infographics">
+                <img src="./images/portfolio/infographics-1.jpg" alt="Learning Infographics" class="project-image">
+                <div class="project-info">
+                    <h3>Learning Infographics</h3>
+                    <p>Educational infographics designed for better information retention.</p>
+                    <div class="project-tags">
+                        <span class="tag">Photoshop</span>
+                        <span class="tag">Education</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+            <div class="project-card glass active" data-category="design" data-subcategory="infographics">
+                <img src="./images/portfolio/Mockups.jpg" alt="Learning Infographics" class="project-image">
+                <div class="project-info">
+                    <h3>Learning Branding</h3>
+                    <p>Mockups for branding and  brand promotional</p>
+                    <div class="project-tags">
+                        <span class="tag">Illustrater</span>
+                        <span class="tag">Branding</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+            <div class="project-card glass active" data-category="design" data-subcategory="infographics">
+                <img src="./images/portfolio/Screen-designing.jpg" alt="Learning Infographics" class="project-image">
+                <div class="project-info">
+                    <h3>Learning Screen-designing</h3>
+                    <p>Mobile app Screen designed for Food app for better information retention.</p>
+                    <div class="project-tags">
+                        <span class="tag">Photoshop</span>
+                        <span class="tag">Screen Designing</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+
+            <!-- ========== DESIGN: FLYERS ========== -->
+            <div class="project-card glass active" data-category="design" data-subcategory="flyers">
+                <img src="./images/portfolio/food-flyer.jpg" alt="Food Flyer" class="project-image">
+                <div class="project-info">
+                    <h3>Food Flyer</h3>
+                    <p>A promotional flyer design for a food-related campaign.</p>
+                    <div class="project-tags">
+                        <span class="tag">Photoshop</span>
+                        <span class="tag">Print Design</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+    
+            <div class="project-card glass active" data-category="design" data-subcategory="flyers">
+                <img src="./images/portfolio/22-flyer.jpg" alt="Anti-Virus Flyer" class="project-image">
+                <div class="project-info">
+                    <h3>Anti-Virus Flyer</h3>
+                    <p>A flyer campaign designed to raise awareness about anti-virus solutions.</p>
+                    <div class="project-tags">
+                        <span class="tag">Illustrator</span>
+                        <span class="tag">Public Awareness</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+
+            <div class="project-card glass active" data-category="design" data-subcategory="flyers">
+                <img src="./images/portfolio/traveling-poster.jpg" alt="Travel Poster" class="project-image">
+                <div class="project-info">
+                    <h3>Travel Poster</h3>
+                    <p>Vibrant poster design for travel and adventure campaigns.</p>
+                    <div class="project-tags">
+                        <span class="tag">Illustrator</span>
+                        <span class="tag">Tourism</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+    
+    
+            <!-- ========== WORDPRESS PROJECTS ========== -->
+            <div class="project-card glass active" data-category="wordpress">
+                <img src="./images/portfolio/WORDPRESS.PNG" alt="WordPress Site" class="project-image">
+                <div class="project-info">
+                    <h3>WordPress Static Site</h3>
+                    <p>Fully optimized WordPress site to enhance user experience.</p>
                     <div class="project-tags">
                         <span class="tag">WordPress</span>
                         <span class="tag">Elementor</span>
                     </div>
-                    <a href="#" class="btn btn-primary">View Project</a>
+                    <a href="https://dev-withsmile.pantheonsite.io/" class="btn btn-primary">Live Demo</a>
                 </div>
             </div>
 
-            <!-- Figma Projects -->
-            <div class="project-card glass active" data-category="figma">
-                <img src="https://via.placeholder.com/600x400" alt="Project 7" class="project-image">
+            
+            <div class="project-card glass active" data-category="wordpress">
+                <img src="./images/portfolio/WOO COM.PNG" alt="WooCommerce Site" class="project-image">
                 <div class="project-info">
-                    <h3>Mobile App UI</h3>
-                    <p>Figma prototype for a fitness tracking app.</p>
+                    <h3>WooCommerce Store</h3>
+                    <p>E-commerce site with WooCommerce integration for online sales.</p>
+                    <div class="project-tags">
+                        <span class="tag">WordPress</span>
+                        <span class="tag">WooCommerce</span>
+                    </div>
+                    <a href="https://dev-dharma-point.pantheonsite.io/" class="btn btn-primary">Live Demo</a>
+                </div>
+            </div>
+    
+            <!-- ========== FIGMA PROJECTS ========== -->
+            <div class="project-card glass active" data-category="figma">
+                <img src="./images/portfolio/E-Learning-mockup.jpg" alt="E-Learning App" class="project-image">
+                <div class="project-info">
+                    <h3>Figma E-Learning</h3>
+                    <p>Intuitive E-Learning app prototype with user-friendly navigation.</p>
                     <div class="project-tags">
                         <span class="tag">Figma</span>
                         <span class="tag">UI/UX</span>
                     </div>
-                    <a href="#" class="btn btn-primary">View Project</a>
+                    <a href="https://www.figma.com/proto/U47b28UEOOBDoajZhRhgMl/E-Learning?page-id=0%3A1&node-id=1-2&starting-point-node-id=1%3A2&t=0WG5lK1bdjMEWZAy-1" class="btn btn-primary">View Prototype</a>
+                </div>
+            </div>
+    
+            <div class="project-card glass active" data-category="figma">
+                <img src="./images/portfolio/Linkup-Mockup.jpg" alt="Social Media App" class="project-image">
+                <div class="project-info">
+                    <h3>Figma Social Media</h3>
+                    <p>Interactive prototype for a social media app (LinkUp).</p>
+                    <div class="project-tags">
+                        <span class="tag">Figma</span>
+                        <span class="tag">Prototyping</span>
+                    </div>
+                    <a href="https://www.figma.com/proto/cMpO2IAybUqyW6FIboyj7w/Link-Up?page-id=0%3A1&node-id=1-2&p=f&viewport=679%2C440%2C0.13&t=c92r9p679ZPgCbgF-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A2&show-proto-sidebar=1" class="btn btn-primary">View Prototype</a>
                 </div>
             </div>
         </div>
