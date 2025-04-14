@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #000000;
+            --secondary: linear-gradient(to right, #ffffff, #e0e0e0);
+            --dark: #121212;
+            --light: #f5f5f5;
+            --glass: rgba(0, 0, 0, 0.5);
+            --edge: #000000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #050505, #121212);
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Custom Cursor - Disabled on mobile */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--light);
+            mix-blend-mode: difference;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease;
+        }
+
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--light);
+            background: transparent;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+
+            .cursor,
+            .cursor-follower {
+                display: none;
+            }
+        }
+
+        /* Glassmorphism Effect */
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        /* Gradient Borders */
+        .gradient-border {
+            position: relative;
+            border-radius: 15px;
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(to right, #ffffff, #e0e0e0);
+            border-radius: 17px;
+            z-index: -1;
+        }
+
+        /* Header */
+        header {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #ffffff, #e0e0e0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #ffffff, #e0e0e0);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 101;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(to right, #ffffff, #e0e0e0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            color: #e0e0e0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(to right, #ffffff, #e0e0e0);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-shapes {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: #ffffff;
+            top: 20%;
+            right: 20%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: #e0e0e0;
+            top: 50%;
+            right: 30%;
+            animation: float 6s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background: #b0b0b0;
+            bottom: 20%;
+            right: 40%;
+            animation: float 5s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+
+        /* About Section */
+        .section {
+            padding: 8rem 10%;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            color: white;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 4px;
+            background: linear-gradient(to right, #ffffff, #e0e0e0);
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: flex;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #e0e0e0;
+        }
+
+        .about-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .profile-img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            z-index: 2;
+            position: relative;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            top: 20px;
+            left: 20px;
+            z-index: 1;
+        }
+
+        /* Infinite Horizontal Skills Section */
+        .skills-horizontal-section {
+            padding: 2rem 0;
+            margin-top: -4rem;
+            margin-bottom: 4rem;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        .skills-horizontal-container {
+            display: flex;
+            gap: 2rem;
+            padding: 1rem 0;
+            width: max-content;
+            animation: scroll 20s linear infinite;
+            will-change: transform;
+        }
+
+        .skills-horizontal-container.clone {
+            position: absolute;
+            top: 2rem;
+            left: 190%;
+            align-items: center;
+        }
+
+        .horizontal-skill-card {
+            display: flex;
+            /* flex-direction: column; */
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 1.5rem 1rem 1.5rem;
+            border-radius: 40px;
+            min-width: 150px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            flex-shrink: 0;
+        }
+
+        .horizontal-skill-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .horizontal-skill-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #ffffff, #e0e0e0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .horizontal-skill-card h3 {
+            color: #f5f5f5;
+            font-size: 1rem;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Circular Tools Section */
+        .tools-section {
+            /* padding: 8rem 10%; */
+            text-align: center;
+            position: relative;
+            /* min-height: 100vh; */
+            /* display: flex;
+            flex-direction: column;
+            justify-content: center; */
+        }
+
+        .tools-circle-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+            align-items: end;
+        }
+
+        .tool-item {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s ease;
+            transform-origin: center;
+            will-change: transform;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #f5f5f5;
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 0.5rem;
+        }
+
+        .tool-item.active {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .tool-icon {
+            font-size: 2rem;
+            margin-bottom: 0.2rem;
+            background: linear-gradient(to right, #ffffff, #e0e0e0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Projects Section */
+        .projects-section {
+            padding: 8rem 10%;
+            padding-top: 5%;
+        }
+
+        .project-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(to right, #ffffff, #e0e0e0);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .filter-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .design-subfilters {
+            display: none;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+
+        .design-subfilters.active {
+            display: flex;
+        }
+
+        .subfilter-btn {
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .subfilter-btn.active {
+            background: linear-gradient(to right, #ffffff, #e0e0e0);
+            color: var(--primary);
+        }
+
+        .subfilter-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            display: none;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-card.active {
+            display: block;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            margin-bottom: 0.5rem;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .project-info p {
+            margin-bottom: 1rem;
+            color: #b0b0b0;
+            font-size: 0.9rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            padding: 0.3rem 0.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: #e0e0e0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Contact Section */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #f5f5f5;
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-control:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 10%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-link:hover {
+            background: linear-gradient(to right, #ffffff, #e0e0e0);
+            transform: translateY(-5px);
+            color: var(--primary);
+        }
+
+        footer p {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Scroll Animation Classes */
+        .hidden {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .section {
+                padding: 6rem 8%;
+            }
+
+            .tools-circle-container {
+                width: 400px;
+                height: 400px;
+            }
+
+            .tool-item {
+                width: 90px;
+                height: 90px;
+            }
+
+
+        }
+
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                gap: 3rem;
+            }
+
+            .tools-circle-container {
+                width: 350px;
+                height: 350px;
+            }
+
+            .tool-item {
+                width: 80px;
+                height: 80px;
+                font-size: 0.8rem;
+            }
+
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.9);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: right 0.3s ease;
+                z-index: 100;
+            }
+
+            nav ul.active {
+                right: 0;
+            }
+
+            .hero {
+                padding: 0 5%;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+                margin-top: 4rem;
+            }
+
+            .hero-shapes {
+                display: none;
+            }
+
+            .hero-content {
+                margin: 0 auto;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-image {
+                margin-top: 3rem;
+                max-width: 100%;
+            }
+
+            .about-image::before {
+                top: 15px;
+                left: 15px;
+            }
+
+            .section {
+                padding: 5rem 5%;
+            }
+
+            .tools-circle-container {
+                margin-top: 10%;
+                margin-left: 10%;
+                width: 300px;
+                height: 300px;
+            }
+
+            .tool-item {
+                width: 70px;
+                height: 70px;
+                font-size: 0.7rem;
+            }
+
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .skills-horizontal-container {
+                animation-duration: 30s;
+            }
+            .skills-horizontal-container.clone {
+                position: absolute;
+                top: 2rem;
+                left: 280%; 
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .about-text p {
+                font-size: 1rem;
+            }
+
+            .horizontal-skill-card {
+                min-width: 120px;
+                padding: 1rem;
+                margin: auto;
+            }
+
+            .horizontal-skill-icon {
+                font-size: 1.5rem;
+            }
+
+            .horizontal-skill-card h3 {
+                font-size: 0.9rem;
+            }
+            .skills-horizontal-container.clone {
+                position: absolute;
+                top: 2rem;
+                left: 450%; 
+            }
+
+            .tools-circle-container {
+                width: 250px;
+                height: 250px;
+            }
+
+            .tool-item {
+                width: 60px;
+                height: 60px;
+                font-size: 0.6rem;
+            }
+
+            .tool-icon {
+                font-size: 1.5rem;
+            }
+
+            .project-filters {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.4rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .project-info h3 {
+                font-size: 1.1rem;
+            }
+
+            .project-info p {
+                font-size: 0.85rem;
+            }
+
+            .tag {
+                font-size: 0.7rem;
+            }
+
+            .social-links {
+                gap: 1rem;
+            }
+
+            .social-link {
+                width: 40px;
+                height: 40px;
+            }
+
+            /* Further adjust skills animation speed on small devices */
+            .skills-horizontal-container {
+                animation-duration: 40s;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .tools-circle-container {
+                margin-top: 5%;
+                width: 220px;
+                height: 220px;
+            }
+
+            .tool-item {
+                width: 50px;
+                height: 50px;
+            }
+
+            .contact-form {
+                padding: 1rem;
+            }
+
+            .horizontal-skill-card {
+                min-width: 100px;
+                padding: 0.8rem;
+            }
+        }
+
+        #skill-tools {
+            /* display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center; */
+            gap: 2rem;
+            /* padding: 4rem 5%; */
+            width: 100%;
+
+        }
+        .skill-tools-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skill-bars {
+            list-style: none;
+            margin: 6rem 0 3rem;
+            padding: 0;
+        }
+
+        .skill-bars li {
+            height: .6rem;
+            background: #a1a1a1;
+            width: 90%;
+            margin-bottom: 4rem;
+            padding: 0;
+            position: relative;
+        }
+
+        .skill-bars li strong {
+            position: absolute;
+            left: 0;
+            top: -2rem;
+            font-family: "Inter", sans-serif;
+            color: #bbbbbb;
+            text-transform: uppercase;
+            /* letter-spacing: .2rem; */
+            font-size: 1rem;
+            line-height: 2.4rem;
+        }
+
+        .skill-bars li .progress {
+            background: #313131;
+            position: relative;
+            height: 100%;
+            border-radius: 3px;
+        }
+
+        .skill-bars li .progress span {
+            position: absolute;
+            left: 0;
+            top: -2.2rem;
+            display: block !important;
+            font-family: "Inter", sans-serif;
+            color: #313131;
+            font-size: 1.1rem;
+            line-height: 1;
+            background: white;
+            padding: .3rem .3rem;
+            border-radius: 3px;
+            z-index: 10;
+            opacity: 1 ;
+            visibility: visible;
+            border: 2px solid red !important;
+
+        }
+
+        .skill-bars li .progress span::after {
+            position: absolute;
+            left: 50%;
+            bottom: -5px;
+            margin-left: -5px;
+            border-right: 5px solid transparent;
+            border-left: 5px solid transparent;
+            border-top: 5px solid rgba(0, 0, 0, 0.7);
+            content: "";
+        }
+
+        .skill-bars li .percent5 {width: 5%;}
+        .skill-bars li .percent10 {width: 10%;}
+        .skill-bars li .percent15 {width: 15%;}
+        .skill-bars li .percent20 {width: 20%;}
+        .skill-bars li .percent25 {width: 25%;}
+        .skill-bars li .percent30 {width: 30%;}
+        .skill-bars li .percent35 {width: 35%;}
+        .skill-bars li .percent40 {width: 40%;}
+        .skill-bars li .percent45 {width: 45%;}
+        .skill-bars li .percent50 {width: 50%;}
+        .skill-bars li .percent55 {width: 55%;}
+        .skill-bars li .percent60 {width: 60%;}
+        .skill-bars li .percent65 {width: 65%;}
+        .skill-bars li .percent70 {width: 70%;}
+        .skill-bars li .percent75 {width: 75%;}
+        .skill-bars li .percent80 {width: 80%;}
+        .skill-bars li .percent85 {width: 85%;}
+        .skill-bars li .percent90 {width: 90%;}
+        .skill-bars li .percent95 {width: 95%;}
+        .skill-bars li .percent100 {width: 100%;}
+
+        
+    </style>
+</head>
+
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Header -->
+    <header class="glass">
+        <div class="logo">Portfolio</div>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Hi, I'm <span>Your Name</span></h1>
+            <p>I'm a passionate web developer specializing in creating beautiful, interactive experiences with modern
+                web technologies.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                <a href="#projects" class="btn btn-secondary">View My Work</a>
+            </div>
+        </div>
+        <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2 class="section-title hidden">About Me</h2>
+        <div class="about-content">
+            <div class="about-text hidden">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu
+                    sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
+                <p>Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse
+                    dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere.</p>
+                <p>Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim
+                    congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet.</p>
+            </div>
+            <div class="about-image hidden">
+                <img src="https://via.placeholder.com/400" alt="Profile Image" class="profile-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Infinite Horizontal Skills Section -->
+    <div class="skills-horizontal-section glass">
+        <div class="skills-horizontal-container" id="skillsContainer">
+            <div class="horizontal-skill-card glass">
+                <div class="horizontal-skill-icon">💻</div>
+                <h3>HTML/CSS</h3>
+            </div>
+            <div class="horizontal-skill-card glass">
+                <div class="horizontal-skill-icon">🟨</div>
+                <h3>JavaScript</h3>
+            </div>
+            <div class="horizontal-skill-card glass">
+                <div class="horizontal-skill-icon">⚛️</div>
+                <h3>React</h3>
+            </div>
+            <div class="horizontal-skill-card glass">
+                <div class="horizontal-skill-icon">🎨</div>
+                <h3>Photoshop/illustrater</h3>
+            </div>
+
+            <div class="horizontal-skill-card glass">
+                <div class="horizontal-skill-icon">🎨</div>
+                <h3>Figma</h3>
+            </div>
+
+            <!-- Duplicate items for seamless looping -->
+            <div class="horizontal-skill-card glass">
+                <div class="horizontal-skill-icon">💻</div>
+                <h3>HTML/CSS</h3>
+            </div>
+            <div class="horizontal-skill-card glass">
+                <div class="horizontal-skill-icon">🟨</div>
+                <h3>JavaScript</h3>
+            </div>
+            <div class="horizontal-skill-card glass">
+                <div class="horizontal-skill-icon">⚛️</div>
+                <h3>React</h3>
+            </div>
+            <div class="horizontal-skill-card glass">
+                <div class="horizontal-skill-icon">🎨</div>
+                <h3>Photoshop/illustrater</h3>
+            </div>
+            <div class="horizontal-skill-card glass">
+                <div class="horizontal-skill-icon">🎨</div>
+                <h3>Figma</h3>
+            </div>
+        </div>
+    </div>
+
+    <section class="container" id="skill-tools" >
+        <div class="row">
+
+            <div class="col-md-6   tab-full">
+                <h2 class="section-title hidden">My skills</h2>
+                <ul class="skill-bars">
+                    <li>
+                        <div class="progress percent80"><span>80%</span></div>
+                        <strong>HTML & CSS</strong>
+                    </li>
+                    <li>
+                        <div class="progress percent75"><span>70%</span></div>
+                        <strong>JavaScript</strong>
+                    </li>
+                    
+                    <li>
+                        <div class="progress percent55"><span>55%</span></div>
+                        <strong>React JS</strong>
+                    </li>
+                    <li>
+                        <div class="progress percent70"><span>70%</span></div>
+                        <strong>Bootstrap & Materail UI</strong>
+                    </li>
+                    <li>
+                        <div class="progress percent80"><span>80%</span></div>
+                        <strong>Photoshop, illustrater & XD</strong>
+                    </li>
+                    <li>
+                        <div class="progress percent80"><span>80%</span></div>
+                        <strong>Figma</strong>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <!-- Circular Tools Section -->
+            <div  id="tools" class="col-md-6 tools-section">
+                <h2 class="section-title hidden">My Tools</h2>
+                <div class="tools-circle-container">
+                    <!-- Tools will be positioned here by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <h2 class="section-title hidden">My Projects</h2>
+
+        <!-- Project Filters -->
+        <div class="project-filters hidden">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="development">Development</button>
+            <button class="filter-btn" data-filter="design">Design</button>
+            <button class="filter-btn" data-filter="wordpress">WordPress</button>
+            <button class="filter-btn" data-filter="figma">Figma</button>
+        </div>
+
+        <!-- Design Subfilters -->
+        <div class="design-subfilters">
+            <button class="subfilter-btn" data-subfilter="logos">Logos</button>
+            <button class="subfilter-btn" data-subfilter="flyers">Flyers</button>
+            <button class="subfilter-btn" data-subfilter="posters">Posters</button>
+            <button class="subfilter-btn" data-subfilter="other-design">Others</button>
+        </div>
+
+        <!-- Projects Container -->
+        <div class="projects-container">
+            <!-- Development Projects -->
+            <div class="project-card glass active" data-category="development">
+                <img src="https://via.placeholder.com/600x400" alt="Project 1" class="project-image">
+                <div class="project-info">
+                    <h3>E-commerce Website</h3>
+                    <p>A fully responsive e-commerce platform with payment integration.</p>
+                    <div class="project-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">MongoDB</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card glass active" data-category="development">
+                <img src="https://via.placeholder.com/600x400" alt="Project 2" class="project-image">
+                <div class="project-info">
+                    <h3>Task Management App</h3>
+                    <p>A productivity app for managing tasks with drag-and-drop functionality.</p>
+                    <div class="project-tags">
+                        <span class="tag">Vue.js</span>
+                        <span class="tag">Firebase</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">View Project</a>
+                </div>
+            </div>
+
+            <!-- Design Projects -->
+            <div class="project-card glass active" data-category="design" data-subcategory="logos">
+                <img src="https://via.placeholder.com/600x400" alt="Project 3" class="project-image">
+                <div class="project-info">
+                    <h3>Brand Logo Design</h3>
+                    <p>Modern logo design for a tech startup.</p>
+                    <div class="project-tags">
+                        <span class="tag">Illustrator</span>
+                        <span class="tag">Branding</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card glass active" data-category="design" data-subcategory="flyers">
+                <img src="https://via.placeholder.com/600x400" alt="Project 4" class="project-image">
+                <div class="project-info">
+                    <h3>Event Flyer</h3>
+                    <p>Promotional flyer for a music festival.</p>
+                    <div class="project-tags">
+                        <span class="tag">Photoshop</span>
+                        <span class="tag">Print</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card glass active" data-category="design" data-subcategory="posters">
+                <img src="https://via.placeholder.com/600x400" alt="Project 5" class="project-image">
+                <div class="project-info">
+                    <h3>Movie Poster</h3>
+                    <p>Concept poster for an independent film.</p>
+                    <div class="project-tags">
+                        <span class="tag">Illustrator</span>
+                        <span class="tag">Typography</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">View Project</a>
+                </div>
+            </div>
+
+            <!-- WordPress Projects -->
+            <div class="project-card glass active" data-category="wordpress">
+                <img src="https://via.placeholder.com/600x400" alt="Project 6" class="project-image">
+                <div class="project-info">
+                    <h3>Corporate Website</h3>
+                    <p>WordPress site for a financial services company.</p>
+                    <div class="project-tags">
+                        <span class="tag">WordPress</span>
+                        <span class="tag">Elementor</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">View Project</a>
+                </div>
+            </div>
+
+            <!-- Figma Projects -->
+            <div class="project-card glass active" data-category="figma">
+                <img src="https://via.placeholder.com/600x400" alt="Project 7" class="project-image">
+                <div class="project-info">
+                    <h3>Mobile App UI</h3>
+                    <p>Figma prototype for a fitness tracking app.</p>
+                    <div class="project-tags">
+                        <span class="tag">Figma</span>
+                        <span class="tag">UI/UX</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">View Project</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="section-title hidden">Get In Touch</h2>
+        <form class="contact-form glass hidden">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="hidden">
+        <div class="social-links">
+            <a href="#" class="social-link">📱</a>
+            <a href="#" class="social-link">🐦</a>
+            <a href="#" class="social-link">🔗</a>
+            <a href="#" class="social-link">📧</a>
+        </div>
+        <p>&copy; 2023 Your Name. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Custom Cursor - Disabled on mobile
+        if (window.matchMedia("(min-width: 769px)").matches) {
+            const cursor = document.querySelector('.cursor');
+            const cursorFollower = document.querySelector('.cursor-follower');
+
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+
+                // Add a slight delay to the follower for a smooth trailing effect
+                setTimeout(() => {
+                    cursorFollower.style.left = e.clientX + 'px';
+                    cursorFollower.style.top = e.clientY + 'px';
+                }, 100);
+            });
+
+            // Change cursor style on hoverable elements
+            const hoverables = document.querySelectorAll('a, button, .project-card, .skill-card');
+            hoverables.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                    cursor.style.background = 'white';
+                    cursorFollower.style.transform = 'translate(-50%, -50%) scale(0.5)';
+                    cursorFollower.style.borderColor = 'white';
+                });
+
+                el.addEventListener('mouseleave', () => {
+                    cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                    cursor.style.background = '#6366f1';
+                    cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+                    cursorFollower.style.borderColor = '#6366f1';
+                });
+            });
+        }
+
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav ul');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            nav.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a nav link
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                nav.classList.remove('active');
+            });
+        });
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach(el => observer.observe(el));
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        const contactForm = document.querySelector('.contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+
+                // Here you would typically send this data to a server
+                console.log({ name, email, message });
+
+                // Show a success message
+                alert('Thank you for your message! I will get back to you soon.');
+                contactForm.reset();
+            });
+        }
+
+        // Infinite Horizontal Skills Scrolling
+        const skillsContainer = document.getElementById('skillsContainer');
+        if (skillsContainer) {
+            // Clone the container for seamless looping
+            const clone = skillsContainer.cloneNode(true);
+            clone.classList.add('clone');
+            document.querySelector('.skills-horizontal-section').appendChild(clone);
+
+            // Pause animation on hover
+            const skillsSection = document.querySelector('.skills-horizontal-section');
+            skillsSection.addEventListener('mouseenter', () => {
+                skillsContainer.style.animationPlayState = 'paused';
+                clone.style.animationPlayState = 'paused';
+            });
+
+            skillsSection.addEventListener('mouseleave', () => {
+                skillsContainer.style.animationPlayState = 'running';
+                clone.style.animationPlayState = 'running';
+            });
+
+            // Pause animation on touch devices when touched
+            skillsSection.addEventListener('touchstart', () => {
+                skillsContainer.style.animationPlayState = 'paused';
+                clone.style.animationPlayState = 'paused';
+            });
+
+            skillsSection.addEventListener('touchend', () => {
+                skillsContainer.style.animationPlayState = 'running';
+                clone.style.animationPlayState = 'running';
+            });
+        }
+
+        // Circular Tools Section
+        const tools = [
+            { name: 'VS Code', icon: '✏️' },
+            { name: 'Figma', icon: '🎨' },
+            { name: 'Git', icon: '🔄' },
+            { name: 'Photoshop', icon: '🖌️' },
+            { name: 'Illustrator', icon: '✒️' },
+            { name: 'Node.js', icon: '⬢' },
+            { name: 'Chrome DevTools', icon: '🔍' },
+            { name: 'Postman', icon: '📬' },
+            { name: 'Terminal', icon: '💻' },
+            { name: 'Docker', icon: '🐳' }
+        ];
+
+        const toolsCircleContainer = document.querySelector('.tools-circle-container');
+        if (toolsCircleContainer) {
+            // Adjust radius based on screen size
+            let radius;
+            if (window.innerWidth >= 1200) {
+                radius = 200;
+            } else if (window.innerWidth >= 992) {
+                radius = 175;
+            } else if (window.innerWidth >= 768) {
+                radius = 150;
+            } else if (window.innerWidth >= 576) {
+                radius = 125;
+            } else {
+                radius = 100;
+            }
+
+            let angle = 0;
+            const angleIncrement = (2 * Math.PI) / tools.length;
+
+            tools.forEach((tool, index) => {
+                const toolItem = document.createElement('div');
+                toolItem.className = 'tool-item';
+                toolItem.innerHTML = `
+                    <div class="tool-icon">${tool.icon}</div>
+                    <div>${tool.name}</div>
+                `;
+
+                // Get container dimensions
+                const containerWidth = toolsCircleContainer.offsetWidth;
+                const containerHeight = toolsCircleContainer.offsetHeight;
+                const centerX = containerWidth / 2;
+                const centerY = containerHeight / 2;
+
+                // Position items in a circle
+                const x = Math.cos(angle) * radius + centerX - 50;
+                const y = Math.sin(angle) * radius + centerY - 50;
+
+                toolItem.style.left = `${x}px`;
+                toolItem.style.top = `${y}px`;
+
+                toolsCircleContainer.appendChild(toolItem);
+                angle += angleIncrement;
+            });
+
+            // Rotate tools on scroll
+            let lastScrollPosition = 0;
+            const toolItems = document.querySelectorAll('.tool-item');
+
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+                const scrollDelta = scrollPosition - lastScrollPosition;
+
+                // Only rotate if we're in the tools section
+                const toolsSection = document.querySelector('.tools-section');
+                if (!toolsSection) return;
+
+                const sectionTop = toolsSection.offsetTop;
+                const sectionHeight = toolsSection.offsetHeight;
+
+                if (scrollPosition > sectionTop - window.innerHeight &&
+                    scrollPosition < sectionTop + sectionHeight) {
+
+                    // Calculate rotation based on scroll direction and speed
+                    const rotationSpeed = scrollDelta * 0.2;
+
+                    toolItems.forEach((item, index) => {
+                        // Get current position
+                        const currentLeft = parseFloat(item.style.left);
+                        const currentTop = parseFloat(item.style.top);
+
+                        // Get container dimensions
+                        const containerWidth = toolsCircleContainer.offsetWidth;
+                        const containerHeight = toolsCircleContainer.offsetHeight;
+                        const centerX = containerWidth / 2;
+                        const centerY = containerHeight / 2;
+
+                        // Calculate angle to center
+                        const dx = currentLeft - centerX + 50;
+                        const dy = currentTop - centerY + 50;
+                        let angle = Math.atan2(dy, dx);
+
+                        // Apply rotation
+                        angle += rotationSpeed * 0.01;
+
+                        // Calculate new position
+                        const x = Math.cos(angle) * radius + centerX - 50;
+                        const y = Math.sin(angle) * radius + centerY - 50;
+
+                        // Update position
+                        item.style.left = `${x}px`;
+                        item.style.top = `${y}px`;
+
+                        // Highlight the tool at the top
+                        if (angle > -Math.PI / 8 && angle < Math.PI / 8) {
+                            item.classList.add('active');
+                        } else {
+                            item.classList.remove('active');
+                        }
+                    });
+                }
+
+                lastScrollPosition = scrollPosition;
+            });
+
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                // Recalculate radius based on new screen size
+                if (window.innerWidth >= 1200) {
+                    radius = 200;
+                } else if (window.innerWidth >= 992) {
+                    radius = 175;
+                } else if (window.innerWidth >= 768) {
+                    radius = 150;
+                } else if (window.innerWidth >= 576) {
+                    radius = 125;
+                } else {
+                    radius = 100;
+                }
+
+                // Reposition all tool items
+                let angle = 0;
+                const angleIncrement = (2 * Math.PI) / tools.length;
+
+                toolItems.forEach((item, index) => {
+                    // Get container dimensions
+                    const containerWidth = toolsCircleContainer.offsetWidth;
+                    const containerHeight = toolsCircleContainer.offsetHeight;
+                    const centerX = containerWidth / 2;
+                    const centerY = containerHeight / 2;
+
+                    // Calculate new position
+                    const x = Math.cos(angle) * radius + centerX - 50;
+                    const y = Math.sin(angle) * radius + centerY - 50;
+
+                    // Update position
+                    item.style.left = `${x}px`;
+                    item.style.top = `${y}px`;
+
+                    angle += angleIncrement;
+                });
+            });
+        }
+
+        // Project Filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const subfilterButtons = document.querySelectorAll('.subfilter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+        const designSubfilters = document.querySelector('.design-subfilters');
+
+        // Main filter buttons
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filter = button.dataset.filter;
+
+                // Show/hide design subfilters
+                if (filter === 'design') {
+                    designSubfilters.classList.add('active');
+                } else {
+                    designSubfilters.classList.remove('active');
+                    // Also remove active state from subfilter buttons
+                    subfilterButtons.forEach(btn => btn.classList.remove('active'));
+                }
+
+                // Filter projects
+                projectCards.forEach(card => {
+                    if (filter === 'all') {
+                        card.classList.add('active');
+                    } else if (card.dataset.category === filter) {
+                        card.classList.add('active');
+                    } else {
+                        card.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        // Design subfilter buttons
+        subfilterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button
+                subfilterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const subfilter = button.dataset.subfilter;
+
+                // Filter design projects
+                projectCards.forEach(card => {
+                    if (card.dataset.category === 'design') {
+                        if (subfilter === 'all-design') {
+                            card.classList.add('active');
+                        } else if (card.dataset.subcategory === subfilter) {
+                            card.classList.add('active');
+                        } else {
+                            card.classList.remove('active');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
