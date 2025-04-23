@@ -34,8 +34,11 @@
             color: var(--light);
             min-height: 100vh;
             overflow-x: hidden;
+            
         }
-
+{
+     cursor: none
+}
         /* Custom Cursor - Disabled on mobile */
         .cursor {
             position: fixed;
@@ -228,7 +231,7 @@
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 225, 0.7);
         }
 
         .btn-secondary {
@@ -238,7 +241,8 @@
 
         .btn-secondary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+            color: var(--primary);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
         }
 
         .hero-shapes {
@@ -1087,6 +1091,7 @@
         .skill-bars li .percent100 {width: 100%;}
 
         
+        
     </style>
 </head>
 
@@ -1142,6 +1147,8 @@
             </div>
         </div>
         <div class="hero-shapes">
+<spline-viewer url="https://prod.spline.design/eqatVew6I8OzhdYv/scene.splinecode"></spline-viewer>
+
             <div class="shape shape-1"></div>
             <div class="shape shape-2"></div>
             <div class="shape shape-3"></div>
@@ -1271,6 +1278,8 @@
             </div>
         </div>
     </section>
+
+   
 
     <!-- Projects Section -->
     <section id="projects" class="projects-section">
@@ -1584,6 +1593,31 @@
             <button type="submit" class="btn btn-primary">Send Message</button>
         </form>
     </section>
+
+    <div id="chatbot-icon" onclick="toggleChatbot()">
+        <span>💬</span> <!-- Chat bubble icon -->
+      </div>
+    
+      <!-- Chatbot Container -->
+      <div id="chatbot-container">
+        <div id="chatbot-messages">
+          <div class="message bot">
+            <div class="avatar bot"></div>
+            <div class="bubble">Hi there! I’m Snowflex, your guide to Shanmukh Srinadh's portfolio. Ask me where to go, or
+              let's chat casually!</div>
+          </div>
+        </div>
+        <div id="chatbot-input">
+          <input type="text" id="userInput" placeholder="Type a message..." onkeydown="checkEnter(event)">
+          <button onclick="processInput()">Send</button>
+        </div>
+        <!-- Resizer handle to adjust height -->
+        <div class="resizer" id="resizer"></div>
+      </div>
+      
+      <script src="chatbot.js"></script> 
+      <link rel="stylesheet" href="chatbot.css">
+
 
     <!-- Footer -->
     <footer class="hidden">
@@ -1951,6 +1985,7 @@
             });
         });
     </script>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
 </body>
 
 </html>
