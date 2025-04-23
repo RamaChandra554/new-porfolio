@@ -1976,6 +1976,12 @@
                 });
             });
         });
+        const canvas = document.quuerySelector('canvas');
+        convas.addEventListener('touchmove'.(e)=>{
+            const touch = e.touch[0];
+            const x = touch.clientX / window.innerWidth;
+            const y = touch.clientY / window.innerHeight;
+        });
     </script>
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
 </body>
