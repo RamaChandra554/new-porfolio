@@ -86,7 +86,7 @@ function processInput() {
             addMessage('bot', 'Taking you to the Home section...');
             setTimeout(() => scrollToSection('#home'), 500);
         } 
-        else if (input.match(/\b(about him|about shannu|about|skills|what does he know)\b/i)) {
+        else if (input.match(/\b(about him|about Ram|about|skills|what does he know)\b/i)) {
             if (input.match(/\b(skills|what does he know)\b/i)) {
                 addMessage('bot', 'Showing skills in the About section...');
             } else {
@@ -106,11 +106,11 @@ function processInput() {
         } 
         else if (input.match(/\b(projects|works|work|project)\b/i)) {
             addMessage('bot', 'Showing Projects...');
-            setTimeout(() => scrollToSection('#work'), 500);
+            setTimeout(() => scrollToSection('#projects'), 500);
         } 
         else if (input.match(/\b(contact|reach out|get in touch)\b/i)) {
             addMessage('bot', 'Taking you to the Contact section...');
-            setTimeout(() => scrollToSection('#main-footer'), 500);
+            setTimeout(() => scrollToSection('#footer'), 500);
         }
         else {
             addMessage('bot', "I can help you navigate the portfolio. Try asking about: Home, About, Services, Certifications, Projects, or Contact.");
