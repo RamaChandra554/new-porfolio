@@ -5,1086 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advanced Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
-        crossorigin="anonymous"></script>
-    <style>
-        /* Base Styles */
-        :root {
-            --primary: #000000;
-            --secondary: linear-gradient(to right, #ffffff, #e0e0e0);
-            --dark: #121212;
-            --light: #f5f5f5;
-            --glass: rgba(0, 0, 0, 0.5);
-            --edge: #000000;
-        }
+    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+    crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap JS (for modal) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #050505, #121212);
-            color: var(--light);
-            min-height: 100vh;
-            overflow-x: hidden;
-            
-        }
-{
-     cursor: none
-}
-        /* Custom Cursor - Disabled on mobile */
-        .cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--light);
-            mix-blend-mode: difference;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: transform 0.1s ease;
-        }
-
-        .cursor-follower {
-            position: fixed;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid var(--light);
-            background: transparent;
-            pointer-events: none;
-            z-index: 9998;
-            transform: translate(-50%, -50%);
-            transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
-        }
-
-        @media (max-width: 768px) {
-
-            .cursor,
-            .cursor-follower {
-                display: none;
-            }
-        }
-
-        /* Glassmorphism Effect */
-        .glass {
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-        }
-
-        /* Gradient Borders */
-        .gradient-border {
-            position: relative;
-            border-radius: 15px;
-        }
-
-        .gradient-border::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(to right, #ffffff, #e0e0e0);
-            border-radius: 17px;
-            z-index: -1;
-        }
-
-        /* Header */
-        header {
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            width: 100%;
-            z-index: 100;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(to right, #ffffff, #e0e0e0);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .glass {
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-        
-        .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(to right, #ffffff, #e0e0e0);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .nav-link {
-            color: white !important;
-            font-weight: 500;
-            position: relative;
-            padding: 0.5rem 0;
-            margin: 0 0.5rem;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(to right, #ffffff, #e0e0e0);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .navbar-toggler {
-            border: none;
-            padding: 0.25rem;
-        }
-        
-        .navbar-toggler:focus {
-            box-shadow: none;
-        }
-        
-        .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-        }
-
-
-
-        /* Hero Section */
-        .hero {
-            min-height: 60vh;
-            display: flex;
-            align-items: center;
-            padding: 0 10%;
-            padding-top: 90px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            max-width: 600px;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            background: linear-gradient(to right, #ffffff, #e0e0e0);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            line-height: 1.6;
-            color: #e0e0e0;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 225, 0.7);
-        }
-
-        .btn-secondary {
-            background: linear-gradient(to right, #ffffff, #e0e0e0);
-            color: var(--primary);
-        }
-
-        .btn-secondary:hover {
-            transform: translateY(-3px);
-            color: var(--primary);
-            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
-        }
-
-        .hero-shapes {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.3;
-        }
-
-        .shape-1 {
-            width: 150px;
-            height: 150px;
-            background: #ffffff;
-            top: 20%;
-            right: 20%;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        .shape-2 {
-            width: 100px;
-            height: 100px;
-            background: #e0e0e0;
-            top: 50%;
-            right: 30%;
-            animation: float 6s ease-in-out infinite;
-            animation-delay: 1s;
-        }
-
-        .shape-3 {
-            width: 75px;
-            height: 75px;
-            background: #b0b0b0;
-            bottom: 20%;
-            right: 40%;
-            animation: float 5s ease-in-out infinite;
-            animation-delay: 2s;
-        }
-
-        /* About Section */
-        .section {
-            padding: 3rem 10%;
-            position: relative;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 3rem;
-            position: relative;
-            display: inline-block;
-            color: white;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 50%;
-            height: 4px;
-            background: linear-gradient(to right, #ffffff, #e0e0e0);
-            border-radius: 2px;
-        }
-
-        .about-content {
-            display: flex;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text {
-            flex: 1;
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-            font-size: 1.1rem;
-            color: #e0e0e0;
-        }
-
-        
-
-        .profile-img {
-            width: 100%;
-            max-width: 300;
-            border-radius: 20px;
-            z-index: 2;
-            position: relative;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            height: 350px;
-        }
-
-        /* .about-image::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 20px;
-            top: 20px;
-            left: 20px;
-            z-index: 1;
-        } */
-
-        .newScroll   {
-    width: min(1440px, 90vw);
-    margin: auto;
-    z-index:999;
-    padding: 3rem;
-}
-.slider{
-    width: 100%;
-    height: var(--height);
-    overflow: hidden;
-    mask-image: linear-gradient(
-        to right,
-        transparent,
-        #000000 10% 90%,
-        transparent
-    );
-}
-.slider .list{
-    display: flex;
-    width: 100%;
-    min-width: calc(var(--width) * var(--quantity));
-    position: relative;
-}
-.slider .list .item{
-    width: var(--width);
-    height: var(--height);
-    position: absolute;
-    left: 100%;
-    animation: autoRun 10s linear infinite;
-    transition: filter 0.5s;
-    animation-delay: calc( (10s / var(--quantity)) * (var(--position) - 1) - 10s)!important;
-}
-.horizontal-tool {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    height: 50px;
-    min-width: 140px;
-    padding: 0 10px;
-    white-space: nowrap;
-    border: none;
-}
-.horizontal-tool img {
-    height: 35px;
-    width: auto;
-}
-
-@keyframes autoRun{
-    from{
-        left: 100%;
-    }to{
-        left: calc(var(--width) * -1);
-    }
-}
-.slider:hover .item{
-    animation-play-state: paused!important;
-    filter: grayscale(1);
-}
-.slider .item:hover{
-    filter: grayscale(0);
-}
-.slider[reverse="true"] .item{
-    animation: reversePlay 10s linear infinite;
-}
-
-@keyframes reversePlay{
-    from{
-        left: calc(var(--width) * -1);
-    }to{
-        left: 100%;
-    }
-}
-
-        /* Circular Tools Section */
-        .tools-section {
-            /* padding: 8rem 10%; */
-            text-align: center;
-            position: relative;
-            /* min-height: 100vh; */
-            /* display: flex;
-            flex-direction: column;
-            justify-content: center; */
-        }
-
-        .tools-circle-container {
-            position: relative;
-            width: 500px;
-            height: 500px;
-            margin: 0 auto;
-            margin-top: 60px;
-            align-items: end;
-        }
-
-        .tool-item {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.5s ease;
-            transform-origin: center;
-            will-change: transform;
-            background: rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #f5f5f5;
-            font-size: 0.9rem;
-            text-align: center;
-            padding: 0.5rem;
-        }
-
-
-        .tool-icon {
-            font-size: 1.6rem;
-            margin-bottom: 0.2rem;
-            background: linear-gradient(to right, #ffffff, #e0e0e0);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        /* Projects Section */
-        .projects-section {
-            padding: 8rem 10%;
-            padding-top: 5%;
-        }
-
-        .project-filters {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            justify-content: center;
-        }
-
-        .filter-btn {
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: var(--light);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .filter-btn.active {
-            background: linear-gradient(to right, #ffffff, #e0e0e0);
-            color: var(--primary);
-            border: 1px solid var(--primary);
-        }
-
-        .filter-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .design-subfilters {
-            display: none;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-            justify-content: center;
-        }
-
-        .design-subfilters.active {
-            display: flex;
-        }
-
-        .subfilter-btn {
-            padding: 0.3rem 1rem;
-            border-radius: 50px;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: var(--light);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.8rem;
-        }
-
-        .subfilter-btn.active {
-            background: linear-gradient(to right, #ffffff, #e0e0e0);
-            color: var(--primary);
-        }
-
-        .subfilter-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .projects-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .project-card {
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            position: relative;
-            display: none;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .project-card.active {
-            display: block;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .project-info {
-            padding: 1.5rem;
-        }
-
-        .project-info h3 {
-            margin-bottom: 0.5rem;
-            color: white;
-            font-size: 1.2rem;
-        }
-
-        .project-info p {
-            margin-bottom: 1rem;
-            color: #b0b0b0;
-            font-size: 0.9rem;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .tag {
-            padding: 0.3rem 0.8rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            font-size: 0.8rem;
-            color: #e0e0e0;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        /* Contact Section */
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 2rem;
-            border-radius: 15px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: #f5f5f5;
-            font-size: 0.9rem;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: none;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--light);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .form-control:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        /* Footer */
-        footer {
-            padding: 3rem 10%;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .social-link {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .social-link:hover {
-            background: linear-gradient(to right, #ffffff, #e0e0e0);
-            transform: translateY(-5px);
-            color: var(--primary);
-        }
-
-        footer p {
-            color: #b0b0b0;
-            font-size: 0.9rem;
-        }
-
-        /* Animations */
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
-
-            100% {
-                transform: translateY(0px);
-            }
-        }
-
-        @keyframes rotate {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Scroll Animation Classes */
-        .hidden {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
-        }
-
-        .show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-
-            .section {
-                padding: 6rem 8%;
-            }
-
-            .tools-circle-container {
-                width: 400px;
-                height: 400px;
-            }
-
-            .tool-item {
-                width: 90px;
-                height: 90px;
-            }
-
-
-        }
-
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .section-title {
-                font-size: 2.5rem;
-            }
-
-            .about-content {
-                gap: 3rem;
-            }
-
-            .tools-circle-container {
-                width: 350px;
-                height: 350px;
-            }
-
-            .tool-item {
-                width: 80px;
-                height: 80px;
-                font-size: 0.8rem;
-            }
-
-        }
-
-        @media (max-width: 768px) {
-            header {
-                padding: 1rem;
-            }
-
-            .hero {
-                padding: 0 5%;
-                text-align: center;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-                margin-top: 4rem;
-            }
-
-            .hero-content {
-                margin: 0 auto;
-            }
-
-            .about-content {
-                flex-direction: column;
-            }
-
-            .about-image {
-                margin-top: 3rem;
-                max-width: 100%;
-            }
-
-            .about-image::before {
-                top: 15px;
-                left: 15px;
-            }
-
-            .section {
-                padding: 5rem 5%;
-            }
-
-            .tools-circle-container {
-                margin-top: 22%;
-                margin-left: 22%;
-                width: 300px;
-                height: 300px;
-            }
-
-            .tool-item {
-                width: 70px;
-                height: 70px;
-                font-size: 0.7rem;
-            }
-
-            .projects-container {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-form {
-                padding: 1.5rem;
-            }
-
-            .skills-horizontal-container {
-                animation-duration: 30s;
-            }
-            .skills-horizontal-container.clone {
-                position: absolute;
-                top: 2rem;
-                left: 280%; 
-            }
-        }
-
-        @media (max-width: 576px) {
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .btn {
-                padding: 0.6rem 1.5rem;
-                font-size: 0.9rem;
-            }
-
-            .about-text p {
-                font-size: 1rem;
-            }
-
-            .horizontal-skill-card {
-                min-width: 120px;
-                padding: 1rem;
-                margin: auto;
-            }
-
-            .horizontal-skill-icon {
-                font-size: 1.5rem;
-            }
-
-            .horizontal-skill-card h3 {
-                font-size: 0.9rem;
-            }
-            .skills-horizontal-container.clone {
-                position: absolute;
-                top: 2rem;
-                left: 450%; 
-            }
-
-            .tools-circle-container {
-                margin-top: 10%;
-                width: 250px;
-                height: 250px;
-            }
-
-            .tool-item {
-                width: 60px;
-                height: 60px;
-                font-size: 0.6rem;
-            }
-
-            .tool-icon {
-                font-size: 1.2rem;
-            }
-
-            .project-filters {
-                gap: 0.5rem;
-            }
-
-            .filter-btn {
-                padding: 0.4rem 1rem;
-                font-size: 0.8rem;
-            }
-
-            .project-info h3 {
-                font-size: 1.1rem;
-            }
-
-            .project-info p {
-                font-size: 0.85rem;
-            }
-
-            .tag {
-                font-size: 0.7rem;
-            }
-
-            .social-links {
-                gap: 1rem;
-            }
-
-            .social-link {
-                width: 40px;
-                height: 40px;
-            }
-
-            /* Further adjust skills animation speed on small devices */
-            .skills-horizontal-container {
-                animation-duration: 40s;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .tools-circle-container {
-                width: 220px;
-                height: 220px;
-            }
-
-            .tool-item {
-                width: 50px;
-                height: 50px;
-            }
-            .tool-icon {
-                font-size: 1rem;
-            }
-
-            .contact-form {
-                padding: 1rem;
-            }
-
-            .horizontal-skill-card {
-                min-width: 100px;
-                padding: 0.8rem;
-            }
-        }
-
-        #skill-tools {
-            /* display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center; */
-            gap: 2rem;
-            /* padding: 4rem 5%; */
-            width: 100%;
-
-        }
-        .skill-tools-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .skill-bars {
-            list-style: none;
-            margin: 4rem 0 3rem;
-            padding: 0;
-        }
-
-        .skill-bars li {
-            height: .6rem;
-            background: #3a3a3a;
-            width: 90%;
-            margin-bottom: 4rem;
-            padding: 0;
-            position: relative;
-        }
-
-        .skill-bars li strong {
-            position: absolute;
-            left: 0;
-            top: -2rem;
-            font-family: "Inter", sans-serif;
-            color: #bbbbbb;
-            text-transform: uppercase;
-            /* letter-spacing: .2rem; */
-            font-size: 1rem;
-            line-height: 2.4rem;
-        }
-
-        .skill-bars li .progress {
-            background: #bbbbbb;
-            position: relative;
-            height: 100%;
-            border-radius: 3px;
-        }
-
-        .skill-bars li .progress span {
-            position: absolute;
-            left: 0;
-            top: -2.2rem;
-            display: block !important;
-            font-family: "Inter", sans-serif;
-            color: #3a3a3a;
-            font-size: 1.1rem;
-            line-height: 1;
-            background: #313131;
-            padding: .3rem .3rem;
-            border-radius: 3px;
-            z-index: 10;
-            opacity: 1 ;
-            visibility: visible;
-            border: 2px solid red !important;
-
-        }
-
-        .skill-bars li .progress span::after {
-            position: absolute;
-            left: 50%;
-            bottom: -5px;
-            margin-left: -5px;
-            border-right: 5px solid transparent;
-            border-left: 5px solid transparent;
-            border-top: 5px solid rgba(0, 0, 0, 0.7);
-            content: "";
-        }
-
-        .skill-bars li .percent5 {width: 5%;}
-        .skill-bars li .percent10 {width: 10%;}
-        .skill-bars li .percent15 {width: 15%;}
-        .skill-bars li .percent20 {width: 20%;}
-        .skill-bars li .percent25 {width: 25%;}
-        .skill-bars li .percent30 {width: 30%;}
-        .skill-bars li .percent35 {width: 35%;}
-        .skill-bars li .percent40 {width: 40%;}
-        .skill-bars li .percent45 {width: 45%;}
-        .skill-bars li .percent50 {width: 50%;}
-        .skill-bars li .percent55 {width: 55%;}
-        .skill-bars li .percent60 {width: 60%;}
-        .skill-bars li .percent65 {width: 65%;}
-        .skill-bars li .percent70 {width: 70%;}
-        .skill-bars li .percent75 {width: 75%;}
-        .skill-bars li .percent80 {width: 80%;}
-        .skill-bars li .percent85 {width: 85%;}
-        .skill-bars li .percent90 {width: 90%;}
-        .skill-bars li .percent95 {width: 95%;}
-        .skill-bars li .percent100 {width: 100%;}
-
-        
-        
-    </style>
 </head>
 
 <body>
@@ -1094,16 +29,17 @@
 
     <!-- Header -->
 
-        <div class="menu-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+    <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
     <!-- Bootstrap Navbar -->
     <nav class="navbar navbar-expand-lg glass fixed-top py-3">
         <div class="container">
             <a class="navbar-brand" href="#">Portfolio</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -1139,7 +75,7 @@
             </div>
         </div>
         <div class="hero-shapes">
-<spline-viewer url="https://prod.spline.design/eqatVew6I8OzhdYv/scene.splinecode"></spline-viewer>
+            <spline-viewer url="https://prod.spline.design/eqatVew6I8OzhdYv/scene.splinecode"></spline-viewer>
 
             <div class="shape shape-1"></div>
             <div class="shape shape-2"></div>
@@ -1153,7 +89,7 @@
         <div class="about-content">
             <div class="about-text hidden">
                 <p>Let me introduce myself.</p>
-                <p>I'm Ramachandra rao. 
+                <p>I'm Ramachandra rao.
                     <br>
                     <span>Front-end Developer,</span>
                     <span>UI/UX Designer,</span>
@@ -1161,7 +97,9 @@
                     <span>Web Designer</span> -->
                 </p>
                 <p>I bring strong technical skills, creativity, and a user-centric approach to design,
-                    ensuring seamless and engaging experiences. With a passion for learning and adaptability, I stay updated with industry trends, prioritize clear communication, and approach problem-solving proactively to deliver high-quality results.</p>
+                    ensuring seamless and engaging experiences. With a passion for learning and adaptability, I stay
+                    updated with industry trends, prioritize clear communication, and approach problem-solving
+                    proactively to deliver high-quality results.</p>
             </div>
             <div class="about-image hidden">
                 <img src="./images/profile-pic.jpg" alt="Profile Image" class="profile-img">
@@ -1173,35 +111,43 @@
         <div class="slider" style="--width: 100px; align-items: center; --height: 100px; --quantity: 10;">
             <div class="list">
                 <div class="item horizontal-tool" style="--position: 1;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Adobe_Photoshop_CC_icon.svg/512px-Adobe_Photoshop_CC_icon.svg.png?20200616073617" alt="">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Adobe_Photoshop_CC_icon.svg/512px-Adobe_Photoshop_CC_icon.svg.png?20200616073617"
+                        alt="">
                     <span>Photoshop</span>
                 </div>
                 <div class="item horizontal-tool" style="--position: 2;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Adobe_Illustrator_CC_icon.svg/640px-Adobe_Illustrator_CC_icon.svg.png" alt="">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Adobe_Illustrator_CC_icon.svg/640px-Adobe_Illustrator_CC_icon.svg.png"
+                        alt="">
                     <span>Illustrator</span>
                 </div>
                 <div class="item horizontal-tool" style="--position: 3;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/640px-Visual_Studio_Code_1.35_icon.svg.png" alt="">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/640px-Visual_Studio_Code_1.35_icon.svg.png"
+                        alt="">
                     <span>VS Code</span>
                 </div>
                 <div class="item horizontal-tool" style="--position: 4;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/640px-Figma-logo.svg.png" alt="">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/640px-Figma-logo.svg.png"
+                        alt="">
                     <span>Figma</span>
                 </div>
                 <div class="item horizontal-tool" style="--position: 5;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Github-desktop-logo-symbol.svg/640px-Github-desktop-logo-symbol.svg.png" alt="">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Github-desktop-logo-symbol.svg/640px-Github-desktop-logo-symbol.svg.png"
+                        alt="">
                     <span>GitHub</span>
                 </div>
                 <div class="item horizontal-tool" style="--position: 6;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Wordpress_logo_8.png/640px-Wordpress_logo_8.png" alt="">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Wordpress_logo_8.png/640px-Wordpress_logo_8.png"
+                        alt="">
                     <span>WordPress</span>
                 </div>
                 <div class="item horizontal-tool" style="--position: 7;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/640px-Bootstrap_logo.svg.png" alt="">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/640px-Bootstrap_logo.svg.png"
+                        alt="">
                     <span>Bootstrap</span>
                 </div>
                 <div class="item horizontal-tool" style="--position: 8;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Adobe_XD_CC_icon.svg/640px-Adobe_XD_CC_icon.svg.png" alt="">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Adobe_XD_CC_icon.svg/640px-Adobe_XD_CC_icon.svg.png"
+                        alt="">
                     <span>Adobe XD</span>
                 </div>
                 <div class="item horizontal-tool" style="--position: 9;">
@@ -1217,7 +163,77 @@
     </div>
 
 
-    <section class="container" id="skill-tools" >
+    <!-- Certificates Section -->
+    <section id="certificates" class="bg-inherit py-5">
+        <div class="container">
+            <h2 class="section-title hidden">certifications</h2>
+            <div class="row g-4">
+
+                <!-- Certificate Item -->
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card border-0 position-relative overflow-hidden">
+                        <img src="./images/certifications/ux desiner.PNG" class="card-img-top" alt="Certificate 1">
+                        <a href="#" class="stretched-link" data-bs-toggle="modal"
+                            data-bs-target="#modal-certificate-01"></a>
+                        <div class="card-img-overlay-custom text-center">
+                            <div class="certificate-title">Web Development</div>
+                            <div class="certificate-types">HTML, CSS, JS</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Duplicate for more certificates -->
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card border-0 position-relative overflow-hidden">
+                        <img src="./images/certifications/ux desiner.PNG" class="card-img-top" alt="Certificate 2">
+                        <a href="#" class="stretched-link" data-bs-toggle="modal"
+                            data-bs-target="#modal-certificate-01"></a>
+                        <div class="card-img-overlay-custom text-center">
+                            <div class="certificate-title">Graphic Design</div>
+                            <div class="certificate-types">Photoshop, Illustrator</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card border-0 position-relative overflow-hidden">
+                        <img src="./images/certifications/ux desiner.PNG" class="card-img-top" alt="Certificate 2">
+                        <a href="#" class="stretched-link" data-bs-toggle="modal"
+                            data-bs-target="#modal-certificate-01"></a>
+                        <div class="card-img-overlay-custom text-center">
+                            <div class="certificate-title">Graphic Design</div>
+                            <div class="certificate-types">Photoshop, Illustrator</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal-certificate-01" tabindex="-1" aria-labelledby="modalCertificateLabel01"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <img src="images/portfolio/modals/m-liberty.jpg" class="img-fluid w-100" alt="Certificate Detail">
+                </div>
+                <div class="p-4">
+                    <h5 class="modal-title" id="modalCertificateLabel01">Web Development Certificate</h5>
+                    <p>This certificate validates completion of a comprehensive course in front-end development,
+                        including HTML, CSS, and JavaScript.</p>
+                    <div class="text-muted text-uppercase small">Issued by: Coding Institute</div>
+                </div>
+                <div class="modal-footer bg-dark text-white justify-content-between">
+                    <a href="#" class="btn btn-outline-light">View Details</a>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="container" id="skill-tools">
         <div class="row">
 
             <div class="col-md-6   tab-full">
@@ -1231,7 +247,7 @@
                         <div class="progress percent70"><span>70%</span></div>
                         <strong>JavaScript</strong>
                     </li>
-                    
+
                     <li>
                         <div class="progress percent55"><span>55%</span></div>
                         <strong>React JS</strong>
@@ -1262,7 +278,7 @@
             </div>
 
             <!-- Circular Tools Section -->
-            <div  id="tools" class="col-md-6 tools-section">
+            <div id="tools" class="col-md-6 tools-section">
                 <h2 class="section-title hidden">My Tools</h2>
                 <div class="tools-circle-container">
                     <!-- Tools will be positioned here by JavaScript -->
@@ -1271,12 +287,12 @@
         </div>
     </section>
 
-   
+
 
     <!-- Projects Section -->
     <section id="projects" class="projects-section">
         <h2 class="section-title hidden">My Projects</h2>
-    
+
         <!-- Project Filters -->
         <div class="project-filters hidden">
             <button class="filter-btn active" data-filter="all">All</button>
@@ -1285,7 +301,7 @@
             <button class="filter-btn" data-filter="wordpress">WordPress</button>
             <button class="filter-btn" data-filter="figma">Figma</button>
         </div>
-    
+
         <!-- Design Subfilters -->
         <div class="design-subfilters">
             <button class="subfilter-btn" data-subfilter="logos">Logos</button>
@@ -1293,7 +309,7 @@
             <button class="subfilter-btn" data-subfilter="posters">Posters</button>
             <button class="subfilter-btn" data-subfilter="infographics">Others</button>
         </div>
-    
+
         <!-- Projects Container -->
         <div class="projects-container">
             <!-- ========== DEVELOPMENT PROJECTS ========== -->
@@ -1309,7 +325,7 @@
                     <a href="https://ramachandra554.github.io/mymobiles/" class="btn btn-primary">Live Demo</a>
                 </div>
             </div>
-    
+
             <div class="project-card glass active" data-category="development">
                 <img src="./images/portfolio/JS-Ecom.png" alt="JS Ecommerce" class="project-image">
                 <div class="project-info">
@@ -1322,7 +338,7 @@
                     <a href="https://ramachandra554.github.io/Js-ecom/" class="btn btn-primary">Live Demo</a>
                 </div>
             </div>
-    
+
             <div class="project-card glass active" data-category="development">
                 <img src="./images/portfolio/RBank.png" alt="R Bank" class="project-image">
                 <div class="project-info">
@@ -1335,7 +351,7 @@
                     <a href="https://ramachandra554.github.io/Rambank/" class="btn btn-primary">Live Demo</a>
                 </div>
             </div>
-    
+
             <!-- ========== DESIGN: LOGOS ========== -->
             <div class="project-card glass active" data-category="design" data-subcategory="logos">
                 <img src="./images/portfolio/Golden-Raio's.jpg" alt="Golden Ratio Logos" class="project-image">
@@ -1349,7 +365,7 @@
                     <a href="#" class="btn btn-primary">View Details</a>
                 </div>
             </div>
-    
+
             <div class="project-card glass active" data-category="design" data-subcategory="logos">
                 <img src="./images/portfolio/LOGOS.jpg" alt="Logo Collection" class="project-image">
                 <div class="project-info">
@@ -1362,8 +378,8 @@
                     <a href="#" class="btn btn-primary">View Details</a>
                 </div>
             </div>
-    
-            
+
+
             <!-- ========== DESIGN: POSTERS ========== -->
             <div class="project-card glass active" data-category="design" data-subcategory="posters">
                 <img src="./images/portfolio/Burger-illus.jpg" alt="Burger Poster" class="project-image">
@@ -1391,7 +407,7 @@
                 </div>
             </div>
 
-             <div class="project-card glass active" data-category="design" data-subcategory="posters">
+            <div class="project-card glass active" data-category="design" data-subcategory="posters">
                 <img src="./images/portfolio/GD-22.gif" alt="Travel Poster" class="project-image">
                 <div class="project-info">
                     <h3>Travel Poster</h3>
@@ -1403,7 +419,7 @@
                     <a href="#" class="btn btn-primary">View Details</a>
                 </div>
             </div>
-    
+
             <div class="project-card glass active" data-category="design" data-subcategory="posters">
                 <img src="./images/portfolio/poster-burger.gif" alt="Burger Poster" class="project-image">
                 <div class="project-info">
@@ -1416,7 +432,7 @@
                     <a href="#" class="btn btn-primary">View Details</a>
                 </div>
             </div>
-    
+
             <!-- ========== DESIGN: INFOGRAPHICS ========== -->
             <div class="project-card glass active" data-category="design" data-subcategory="infographics">
                 <img src="./images/portfolio/business-info.jpg" alt="Business Infographics" class="project-image">
@@ -1430,7 +446,7 @@
                     <a href="#" class="btn btn-primary">View Details</a>
                 </div>
             </div>
-    
+
             <div class="project-card glass active" data-category="design" data-subcategory="infographics">
                 <img src="./images/portfolio/infographics-1.jpg" alt="Learning Infographics" class="project-image">
                 <div class="project-info">
@@ -1447,7 +463,7 @@
                 <img src="./images/portfolio/Mockups.jpg" alt="Learning Infographics" class="project-image">
                 <div class="project-info">
                     <h3>Learning Branding</h3>
-                    <p>Mockups for branding and  brand promotional</p>
+                    <p>Mockups for branding and brand promotional</p>
                     <div class="project-tags">
                         <span class="tag">Illustrater</span>
                         <span class="tag">Branding</span>
@@ -1481,7 +497,7 @@
                     <a href="#" class="btn btn-primary">View Details</a>
                 </div>
             </div>
-    
+
             <div class="project-card glass active" data-category="design" data-subcategory="flyers">
                 <img src="./images/portfolio/22-flyer.jpg" alt="Anti-Virus Flyer" class="project-image">
                 <div class="project-info">
@@ -1507,8 +523,8 @@
                     <a href="#" class="btn btn-primary">View Details</a>
                 </div>
             </div>
-    
-    
+
+
             <!-- ========== WORDPRESS PROJECTS ========== -->
             <div class="project-card glass active" data-category="wordpress">
                 <img src="./images/portfolio/WORDPRESS.PNG" alt="WordPress Site" class="project-image">
@@ -1523,7 +539,7 @@
                 </div>
             </div>
 
-            
+
             <div class="project-card glass active" data-category="wordpress">
                 <img src="./images/portfolio/WOO COM.PNG" alt="WooCommerce Site" class="project-image">
                 <div class="project-info">
@@ -1536,7 +552,7 @@
                     <a href="https://dev-dharma-point.pantheonsite.io/" class="btn btn-primary">Live Demo</a>
                 </div>
             </div>
-    
+
             <!-- ========== FIGMA PROJECTS ========== -->
             <div class="project-card glass active" data-category="figma">
                 <img src="./images/portfolio/E-Learning-mockup.jpg" alt="E-Learning App" class="project-image">
@@ -1547,10 +563,11 @@
                         <span class="tag">Figma</span>
                         <span class="tag">UI/UX</span>
                     </div>
-                    <a href="https://www.figma.com/proto/U47b28UEOOBDoajZhRhgMl/E-Learning?page-id=0%3A1&node-id=1-2&starting-point-node-id=1%3A2&t=0WG5lK1bdjMEWZAy-1" class="btn btn-primary">View Prototype</a>
+                    <a href="https://www.figma.com/proto/U47b28UEOOBDoajZhRhgMl/E-Learning?page-id=0%3A1&node-id=1-2&starting-point-node-id=1%3A2&t=0WG5lK1bdjMEWZAy-1"
+                        class="btn btn-primary">View Prototype</a>
                 </div>
             </div>
-    
+
             <div class="project-card glass active" data-category="figma">
                 <img src="./images/portfolio/Linkup-Mockup.jpg" alt="Social Media App" class="project-image">
                 <div class="project-info">
@@ -1560,7 +577,8 @@
                         <span class="tag">Figma</span>
                         <span class="tag">Prototyping</span>
                     </div>
-                    <a href="https://www.figma.com/proto/cMpO2IAybUqyW6FIboyj7w/Link-Up?page-id=0%3A1&node-id=1-2&p=f&viewport=679%2C440%2C0.13&t=c92r9p679ZPgCbgF-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A2&show-proto-sidebar=1" class="btn btn-primary">View Prototype</a>
+                    <a href="https://www.figma.com/proto/cMpO2IAybUqyW6FIboyj7w/Link-Up?page-id=0%3A1&node-id=1-2&p=f&viewport=679%2C440%2C0.13&t=c92r9p679ZPgCbgF-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A2&show-proto-sidebar=1"
+                        class="btn btn-primary">View Prototype</a>
                 </div>
             </div>
         </div>
@@ -1588,27 +606,27 @@
 
     <div id="chatbot-icon" onclick="toggleChatbot()">
         <span>💬</span> <!-- Chat bubble icon -->
-      </div>
-    
-      <!-- Chatbot Container -->
-      <div id="chatbot-container">
+    </div>
+
+    <!-- Chatbot Container -->
+    <div id="chatbot-container">
         <div id="chatbot-messages">
-          <div class="message bot">
-            <div class="avatar bot"></div>
-            <div class="bubble">Hi there! I’m Olaf, your guide to Ramachandra's portfolio. Ask me where to go, or
-              let's chat casually!</div>
-          </div>
+            <div class="message bot">
+                <div class="avatar bot"></div>
+                <div class="bubble">Hi there! I’m Olaf, your guide to Ramachandra's portfolio. Ask me where to go, or
+                    let's chat casually!</div>
+            </div>
         </div>
         <div id="chatbot-input">
-          <input type="text" id="userInput" placeholder="Type a message..." onkeydown="checkEnter(event)">
-          <button onclick="processInput()">Send</button>
+            <input type="text" id="userInput" placeholder="Type a message..." onkeydown="checkEnter(event)">
+            <button onclick="processInput()">Send</button>
         </div>
         <!-- Resizer handle to adjust height -->
         <div class="resizer" id="resizer"></div>
-      </div>
-      
-      <script src="chatbot.js"></script> 
-      <link rel="stylesheet" href="chatbot.css">
+    </div>
+
+    <script src="chatbot.js"></script>
+    <link rel="stylesheet" href="chatbot.css">
 
 
     <!-- Footer -->
@@ -1976,7 +994,7 @@
                 });
             });
         });
-        
+
     </script>
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
 </body>
