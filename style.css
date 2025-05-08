@@ -189,72 +189,36 @@ header {
     color: transparent;
     white-space: nowrap;
     overflow: hidden;
-    border-right: 2px solid #fff;
 }
 
 .hero h1 span {
-    color: #61dafb; /* highlight color (optional) */
+    color: #61dafb; 
 }
 
-/* .typewriter {
-    width: 0;
-    animation: typing 5s steps(30, end) forwards, blink 0.75s step-end infinite;
-}
-
-@keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
-}
-
-@keyframes blink {
-    50% { border-color: transparent; }
-} */
-
-.typewriter {
-    font-family: monospace;
-    color: white;
-    overflow: hidden;
+.type-write{
+    animation: typing 4s steps(33) infinite alternate, blink .5s step-end infinite alternate;
     white-space: nowrap;
-    border-right: 2px solid white;
+    overflow: hidden;
+    border-right: 3px solid;
+    font-family: monospace;
     display: inline-block;
     width: 0;
-  
-    animation: typingErase 6s steps(22) infinite;
-  }
-  
-  @keyframes typingErase {
-    0% {
-      width: 0;
-    }
-    30% {
-      width: 22ch;
-    }
-    50% {
-      width: 22ch;
-    }
-    80% {
-      width: 0;
-    }
-    100% {
-      width: 0;
-    }
-  }
-  
-  @keyframes blink {
-    50% {
-      border-color: transparent;
-    }
-  }
-  
-  
-
-.hero p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-    line-height: 1.6;
-    color: #e0e0e0;
 }
+@keyframes  typing {
+    from {
+        width: 0;
+      }
+      to { width: 12ch; } 
+    }
+        
+    @keyframes blink {
+      50% {
+        border-color: transparent
+      }
+    }
+    
+    
+
 
 .hero p {
     font-size: 1.2rem;
