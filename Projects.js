@@ -200,7 +200,8 @@ const projectsData = [
         subcategory: "posters",
         tags: ["Photoshop", "Tourism"],
         link: "#"
-    },{
+    },
+    {
         id: 26,
         image: "./images/portfolio/GD 22.jpg",
         title: "Travel Poster",
@@ -240,7 +241,16 @@ const projectsData = [
         tags: ["Photoshop", "Nike"],
         link: "#"
     },
-
+    {
+        id: 36,
+        image: "./images/portfolio/Music Festival.png",
+        title: "Music festival Poster",
+        description: "Colorful music festival poster bursting with energy, vibrant visuals, and rhythmic vibes to excite every viewer.",
+        category: "design",
+        subcategory: "posters",
+        tags: ["Canva", "Music Festival"],
+        link: "#"
+    },
     {
         id: 9,
         image: "./images/portfolio/poster-burger.gif",
