@@ -822,7 +822,7 @@ footer p {
 
     .hero {
         padding: 0 5%;
-        text-align: center;
+        text-align: start;
     }
 
     .hero h1 {

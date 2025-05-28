@@ -19,7 +19,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -71,7 +70,7 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1 >Hi, I'm <span class="type-write" >RamaChandra </span></h1>
+            <h1>Hi, I'm <span class="type-write">RamaChandra </span></h1>
             <p>I'm a passionate web developer specializing in creating beautiful, interactive experiences with modern
                 web technologies.</p>
             <div class="hero-buttons">
@@ -80,8 +79,7 @@
             </div>
         </div>
         <div class="hero-shapes">
-            <spline-viewer url="https://prod.spline.design/XZxljbQTUZixWsTa/scene.splinecode"></spline-viewer>
-
+            <spline-viewer url="https://prod.spline.design/UQHY35KsYYy4dkaG/scene.splinecode"></spline-viewer>
             <div class="shape shape-1"></div>
             <div class="shape shape-2"></div>
             <div class="shape shape-3"></div>
@@ -168,126 +166,35 @@
     </div>
 
 
-    <!-- Certificates Section -->
     <section id="certificates" class="bg-inherit py-5">
         <div class="container">
             <h2 class="section-title hidden">certifications</h2>
-            <div class="row g-4">
-
-                <!-- Certificate Item -->
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card border-0 position-relative overflow-hidden">
-                        <img src="./images/certifications/ux desiner.PNG" class="card-img-top" alt="Certificate 1">
-                        <a href="#" class="stretched-link" data-bs-toggle="modal"
-                            data-bs-target="#modal-certificate-01"></a>
-                        <div class="card-img-overlay-custom text-center">
-                            <div class="certificate-title">Graphic Design and Basics of UI/UX </div>
-                            <div class="certificate-types">Figma, Adobe Photoshop, Illustrator</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card border-0 position-relative overflow-hidden">
-                        <img src="./images/certifications/upslide-Hackthon.png" class="card-img-top"
-                            alt="Certificate 2">
-                        <a href="#" class="stretched-link" data-bs-toggle="modal"
-                            data-bs-target="#modal-certificate-01"></a>
-                        <div class="card-img-overlay-custom text-center">
-                            <div class="certificate-title">UpSlide Figma Hackthon </div>
-                            <div class="certificate-types">Figma</div>
-                        </div>
-                    </div>
-                </div>
-
-                
-
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card border-0 position-relative overflow-hidden">
-                        <img src="./images/certifications/Front End.png" class="card-img-top" alt="Certificate 1">
-                        <a href="#" class="stretched-link" data-bs-toggle="modal"
-                            data-bs-target="#modal-certificate-01"></a>
-                        <div class="card-img-overlay-custom text-center">
-                            <div class="certificate-title">Front-end Development </div>
-                            <div class="certificate-types">HTML, CSS, GitHub,JavaScript,React</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card border-0 position-relative overflow-hidden">
-                        <img src="./images/certifications/Google Digital.png" class="card-img-top" alt="Certificate 2">
-                        <a href="#" class="stretched-link" data-bs-toggle="modal"
-                            data-bs-target="#modal-certificate-01"></a>
-                        <div class="card-img-overlay-custom text-center">
-                            <div class="certificate-title">Google Fundamentals of Degital markating</div>
-                            <div class="certificate-types">Degital markating</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card border-0 position-relative overflow-hidden">
-                        <img src="./images/certifications/Orntho.jpg" class="card-img-top" alt="Certificate 1">
-                        <a href="#" class="stretched-link" data-bs-toggle="modal"
-                            data-bs-target="#modal-certificate-01"></a>
-                        <div class="card-img-overlay-custom text-center">
-                            <div class="certificate-title">Andhra Univarsity One day Project</div>
-                            <div class="certificate-types">Hand-Models</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card border-0 position-relative overflow-hidden">
-                        <img src="./images/certifications/Basic java Programing.png" class="card-img-top"
-                            alt="Certificate 1">
-                        <a href="#" class="stretched-link" data-bs-toggle="modal"
-                            data-bs-target="#modal-certificate-01"></a>
-                        <div class="card-img-overlay-custom text-center">
-                            <div class="certificate-title">JavaScript Programing Basics </div>
-                            <div class="certificate-types">JavaScript </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card border-0 position-relative overflow-hidden">
-                        <img src="./images/certifications/C.T.T.C.jpg" class="card-img-top" alt="Certificate 1">
-                        <a href="#" class="stretched-link" data-bs-toggle="modal"
-                            data-bs-target="#modal-certificate-01"></a>
-                        <div class="card-img-overlay-custom text-center">
-                            <div class="certificate-title">Graphic Design and UI/UX </div>
-                            <div class="certificate-types">Adobe Photoshop MS-Office </div>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="row g-4" id="certificates-container">
+                <!-- Certificates will be dynamically inserted here -->
             </div>
         </div>
     </section>
 
-    <!-- Modal -->
-    <div class="modal fade" id="modal-certificate-01" tabindex="-1" aria-labelledby="modalCertificateLabel01"
+    <!-- Single Modal for all certificates -->
+    <div class="modal fade" id="certificate-modal" tabindex="-1" aria-labelledby="certificateModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-body p-0">
-                    <img src="./images/certifications/ux desiner.PNG" class="img-fluid w-100" alt="Certificate Detail">
+                    <img id="modal-certificate-image" src="" class="img-fluid w-100" alt="Certificate Detail">
                 </div>
                 <div class="p-4">
-                    <h5 class="modal-title" id="modalCertificateLabel01">Web Development Certificate</h5>
-                    <p>This certificate validates completion of a comprehensive course in front-end development,
-                        including HTML, CSS, and JavaScript.</p>
-                    <div class="text-muted text-uppercase small">Issued by: Coding Institute</div>
+                    <h5 class="modal-title" id="modal-certificate-title">Certificate Title</h5>
+                    <p id="modal-certificate-description">Certificate description</p>
+                    <div class="text-muted text-uppercase small" id="modal-certificate-issuer">Issued by: </div>
                 </div>
                 <div class="modal-footer bg-dark text-white justify-content-between">
-                    <a href="#" class="btn btn-outline-light">View Details</a>
+                    <a href="#" class="btn btn-outline-light" id="modal-certificate-link">View Details</a>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
-
 
     <section class="container" id="skill-tools">
         <div class="row">
@@ -344,301 +251,55 @@
     </section>
 
 
-
     <!-- Projects Section -->
     <section id="projects" class="projects-section">
-        <h2 class="section-title hidden">My Projects</h2>
+        <div class="container">
+            <h2 class="section-title hidden">My Projects</h2>
 
-        <!-- Project Filters -->
-        <div class="project-filters hidden">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="development">Development</button>
-            <button class="filter-btn" data-filter="design">Design</button>
-            <button class="filter-btn" data-filter="wordpress">WordPress</button>
-            <button class="filter-btn" data-filter="figma">Figma</button>
-        </div>
-
-        <!-- Design Subfilters -->
-        <div class="design-subfilters">
-            <button class="subfilter-btn" data-subfilter="logos">Logos</button>
-            <button class="subfilter-btn" data-subfilter="flyers">Flyers</button>
-            <button class="subfilter-btn" data-subfilter="posters">Posters</button>
-            <button class="subfilter-btn" data-subfilter="infographics">Others</button>
-        </div>
-
-        <!-- Projects Container -->
-        <div class="projects-container">
-            <!-- ========== DEVELOPMENT PROJECTS ========== -->
-            <div class="project-card glass active" data-category="development">
-                <img src="./images/portfolio/React-ecom.png" alt="React Ecommerce" class="project-image">
-                <div class="project-info">
-                    <h3>React Ecommerce</h3>
-                    <p>An e-commerce website built with React for seamless shopping experiences.</p>
-                    <div class="project-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">Material UI</span>
-                    </div>
-                    <a href="https://ramachandra554.github.io/mymobiles/" class="btn btn-primary">Live Demo</a>
-                </div>
+            <!-- Project Filters -->
+            <div class="project-filters hidden">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="development">Development</button>
+                <button class="filter-btn" data-filter="figma">Figma</button>
+                <button class="filter-btn" data-filter="wordpress">WordPress</button>
+                <button class="filter-btn" data-filter="design">Design</button>
             </div>
 
-            <div class="project-card glass active" data-category="development">
-                <img src="./images/portfolio/JS-Ecom.png" alt="JS Ecommerce" class="project-image">
-                <div class="project-info">
-                    <h3>JS Ecommerce</h3>
-                    <p>A modern e-commerce platform developed using JavaScript technologies.</p>
-                    <div class="project-tags">
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">Bootstrap</span>
-                    </div>
-                    <a href="https://ramachandra554.github.io/Js-ecom/" class="btn btn-primary">Live Demo</a>
-                </div>
+            <!-- Design Subfilters -->
+            <div class="design-subfilters">
+                <button class="subfilter-btn" data-subfilter="logos">Logos</button>
+                <button class="subfilter-btn" data-subfilter="flyers">Flyers</button>
+                <button class="subfilter-btn" data-subfilter="posters">Posters</button>
+                <button class="subfilter-btn" data-subfilter="others">Others</button>
             </div>
 
-            <div class="project-card glass active" data-category="development">
-                <img src="./images/portfolio/RBank.png" alt="R Bank" class="project-image">
-                <div class="project-info">
-                    <h3>R Bank</h3>
-                    <p>A banking website with modern web technologies for improved user experience.</p>
-                    <div class="project-tags">
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">HTML/CSS</span>
-                    </div>
-                    <a href="https://ramachandra554.github.io/Rambank/" class="btn btn-primary">Live Demo</a>
-                </div>
-            </div>
-
-            <!-- ========== DESIGN: LOGOS ========== -->
-            <div class="project-card glass active" data-category="design" data-subcategory="logos">
-                <img src="./images/portfolio/Golden-Raio's.jpg" alt="Golden Ratio Logos" class="project-image">
-                <div class="project-info">
-                    <h3>Golden Ratio Logos</h3>
-                    <p>Logo designs inspired by the golden ratio for perfect proportions.</p>
-                    <div class="project-tags">
-                        <span class="tag">Illustrator</span>
-                        <span class="tag">Branding</span>
-                    </div>
-                    <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-            </div>
-
-            <div class="project-card glass active" data-category="design" data-subcategory="logos">
-                <img src="./images/portfolio/LOGOS.jpg" alt="Logo Collection" class="project-image">
-                <div class="project-info">
-                    <h3>Logo Collection</h3>
-                    <p>Creative logo designs tailored to represent unique brand identities.</p>
-                    <div class="project-tags">
-                        <span class="tag">Illustrator</span>
-                        <span class="tag">Branding</span>
-                    </div>
-                    <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-            </div>
-
-
-            <!-- ========== DESIGN: POSTERS ========== -->
-            <div class="project-card glass active" data-category="design" data-subcategory="posters">
-                <img src="./images/portfolio/Burger-illus.jpg" alt="Burger Poster" class="project-image">
-                <div class="project-info">
-                    <h3>Burger Poster</h3>
-                    <p>Animated poster design for a burger restaurant campaign.</p>
-                    <div class="project-tags">
-                        <span class="tag">After Effects</span>
-                        <span class="tag">Food</span>
-                    </div>
-                    <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-            </div>
-
-            <div class="project-card glass active" data-category="design" data-subcategory="posters">
-                <img src="./images/portfolio/Dodge-poster.png" alt="Dodge Poster" class="project-image">
-                <div class="project-info">
-                    <h3>Dodge Car Poster</h3>
-                    <p>A dynamic and engaging poster design for the Dodge brand.</p>
-                    <div class="project-tags">
-                        <span class="tag">Photoshop</span>
-                        <span class="tag">Automotive</span>
-                    </div>
-                    <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-            </div>
-
-            <div class="project-card glass active" data-category="design" data-subcategory="posters">
-                <img src="./images/portfolio/GD-22.gif" alt="Travel Poster" class="project-image">
-                <div class="project-info">
-                    <h3>Travel Poster</h3>
-                    <p>Vibrant poster design for travel and adventure campaigns.</p>
-                    <div class="project-tags">
-                        <span class="tag">Illustrator</span>
-                        <span class="tag">Tourism</span>
-                    </div>
-                    <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-            </div>
-
-            <div class="project-card glass active" data-category="design" data-subcategory="posters">
-                <img src="./images/portfolio/poster-burger.gif" alt="Burger Poster" class="project-image">
-                <div class="project-info">
-                    <h3>Burger Poster</h3>
-                    <p>Animated poster design for a burger restaurant campaign.</p>
-                    <div class="project-tags">
-                        <span class="tag">After Effects</span>
-                        <span class="tag">Food</span>
-                    </div>
-                    <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-            </div>
-
-            <!-- ========== DESIGN: INFOGRAPHICS ========== -->
-            <div class="project-card glass active" data-category="design" data-subcategory="infographics">
-                <img src="./images/portfolio/business-info.jpg" alt="Business Infographics" class="project-image">
-                <div class="project-info">
-                    <h3>Business Infographics</h3>
-                    <p>Infographics showcasing business data in a visually appealing way.</p>
-                    <div class="project-tags">
-                        <span class="tag">Illustrator</span>
-                        <span class="tag">Data Visualization</span>
-                    </div>
-                    <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-            </div>
-
-            <div class="project-card glass active" data-category="design" data-subcategory="infographics">
-                <img src="./images/portfolio/infographics-1.jpg" alt="Learning Infographics" class="project-image">
-                <div class="project-info">
-                    <h3>Learning Infographics</h3>
-                    <p>Educational infographics designed for better information retention.</p>
-                    <div class="project-tags">
-                        <span class="tag">Photoshop</span>
-                        <span class="tag">Education</span>
-                    </div>
-                    <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-            </div>
-            <div class="project-card glass active" data-category="design" data-subcategory="infographics">
-                <img src="./images/portfolio/Mockups.jpg" alt="Learning Infographics" class="project-image">
-                <div class="project-info">
-                    <h3>Learning Branding</h3>
-                    <p>Mockups for branding and brand promotional</p>
-                    <div class="project-tags">
-                        <span class="tag">Illustrater</span>
-                        <span class="tag">Branding</span>
-                    </div>
-                    <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-            </div>
-            <div class="project-card glass active" data-category="design" data-subcategory="infographics">
-                <img src="./images/portfolio/Screen-designing.jpg" alt="Learning Infographics" class="project-image">
-                <div class="project-info">
-                    <h3>Learning Screen-designing</h3>
-                    <p>Mobile app Screen designed for Food app for better information retention.</p>
-                    <div class="project-tags">
-                        <span class="tag">Photoshop</span>
-                        <span class="tag">Screen Designing</span>
-                    </div>
-                    <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-            </div>
-
-            <!-- ========== DESIGN: FLYERS ========== -->
-            <div class="project-card glass active" data-category="design" data-subcategory="flyers">
-                <img src="./images/portfolio/food-flyer.jpg" alt="Food Flyer" class="project-image">
-                <div class="project-info">
-                    <h3>Food Flyer</h3>
-                    <p>A promotional flyer design for a food-related campaign.</p>
-                    <div class="project-tags">
-                        <span class="tag">Photoshop</span>
-                        <span class="tag">Print Design</span>
-                    </div>
-                    <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-            </div>
-
-            <div class="project-card glass active" data-category="design" data-subcategory="flyers">
-                <img src="./images/portfolio/22-flyer.jpg" alt="Anti-Virus Flyer" class="project-image">
-                <div class="project-info">
-                    <h3>Anti-Virus Flyer</h3>
-                    <p>A flyer campaign designed to raise awareness about anti-virus solutions.</p>
-                    <div class="project-tags">
-                        <span class="tag">Illustrator</span>
-                        <span class="tag">Public Awareness</span>
-                    </div>
-                    <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-            </div>
-
-            <div class="project-card glass active" data-category="design" data-subcategory="flyers">
-                <img src="./images/portfolio/traveling-poster.jpg" alt="Travel Poster" class="project-image">
-                <div class="project-info">
-                    <h3>Travel Poster</h3>
-                    <p>Vibrant poster design for travel and adventure campaigns.</p>
-                    <div class="project-tags">
-                        <span class="tag">Illustrator</span>
-                        <span class="tag">Tourism</span>
-                    </div>
-                    <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-            </div>
-
-
-            <!-- ========== WORDPRESS PROJECTS ========== -->
-            <div class="project-card glass active" data-category="wordpress">
-                <img src="./images/portfolio/WORDPRESS.PNG" alt="WordPress Site" class="project-image">
-                <div class="project-info">
-                    <h3>WordPress Static Site</h3>
-                    <p>Fully optimized WordPress site to enhance user experience.</p>
-                    <div class="project-tags">
-                        <span class="tag">WordPress</span>
-                        <span class="tag">Elementor</span>
-                    </div>
-                    <a href="https://dev-withsmile.pantheonsite.io/" class="btn btn-primary">Live Demo</a>
-                </div>
-            </div>
-
-
-            <div class="project-card glass active" data-category="wordpress">
-                <img src="./images/portfolio/WOO COM.PNG" alt="WooCommerce Site" class="project-image">
-                <div class="project-info">
-                    <h3>WooCommerce Store</h3>
-                    <p>E-commerce site with WooCommerce integration for online sales.</p>
-                    <div class="project-tags">
-                        <span class="tag">WordPress</span>
-                        <span class="tag">WooCommerce</span>
-                    </div>
-                    <a href="https://dev-dharma-point.pantheonsite.io/" class="btn btn-primary">Live Demo</a>
-                </div>
-            </div>
-
-            <!-- ========== FIGMA PROJECTS ========== -->
-            <div class="project-card glass active" data-category="figma">
-                <img src="./images/portfolio/E-Learning-mockup.jpg" alt="E-Learning App" class="project-image">
-                <div class="project-info">
-                    <h3>Figma E-Learning</h3>
-                    <p>Intuitive E-Learning app prototype with user-friendly navigation.</p>
-                    <div class="project-tags">
-                        <span class="tag">Figma</span>
-                        <span class="tag">UI/UX</span>
-                    </div>
-                    <a href="https://www.figma.com/proto/U47b28UEOOBDoajZhRhgMl/E-Learning?page-id=0%3A1&node-id=1-2&starting-point-node-id=1%3A2&t=0WG5lK1bdjMEWZAy-1"
-                        class="btn btn-primary">View Prototype</a>
-                </div>
-            </div>
-
-            <div class="project-card glass active" data-category="figma">
-                <img src="./images/portfolio/Linkup-Mockup.jpg" alt="Social Media App" class="project-image">
-                <div class="project-info">
-                    <h3>Figma Social Media</h3>
-                    <p>Interactive prototype for a social media app (LinkUp).</p>
-                    <div class="project-tags">
-                        <span class="tag">Figma</span>
-                        <span class="tag">Prototyping</span>
-                    </div>
-                    <a href="https://www.figma.com/proto/cMpO2IAybUqyW6FIboyj7w/Link-Up?page-id=0%3A1&node-id=1-2&p=f&viewport=679%2C440%2C0.13&t=c92r9p679ZPgCbgF-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A2&show-proto-sidebar=1"
-                        class="btn btn-primary">View Prototype</a>
-                </div>
+            <!-- Projects Container -->
+            <div class="projects-container row g-4" id="projects-container">
+                <!-- Projects will be dynamically inserted here -->
             </div>
         </div>
     </section>
+
+    <div class="modal fade" id="project-modal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <img id="modal-project-image" src="" class="img-fluid w-100" alt="Project Detail">
+                </div>
+                <div class="p-4">
+                    <h3 class="modal-title" id="modal-project-title">Project Title</h3>
+                    <p id="modal-project-description">Project description</p>
+                    <div class="project-tags mb-3" id="modal-project-tags"></div>
+                    <div class="text-muted text-uppercase small" id="modal-project-category"></div>
+                </div>
+                <div class="modal-footer bg-dark text-white justify-content-between">
+                    <a href="#" class="btn btn-outline-light" id="modal-project-link" target="_blank">View Project</a>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Contact Section -->
     <section id="contact" class="section">
@@ -992,69 +653,13 @@
             });
         }
 
-        // Project Filtering
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const subfilterButtons = document.querySelectorAll('.subfilter-btn');
-        const projectCards = document.querySelectorAll('.project-card');
-        const designSubfilters = document.querySelector('.design-subfilters');
-
-        // Main filter buttons
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Update active button
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-
-                const filter = button.dataset.filter;
-
-                // Show/hide design subfilters
-                if (filter === 'design') {
-                    designSubfilters.classList.add('active');
-                } else {
-                    designSubfilters.classList.remove('active');
-                    // Also remove active state from subfilter buttons
-                    subfilterButtons.forEach(btn => btn.classList.remove('active'));
-                }
-
-                // Filter projects
-                projectCards.forEach(card => {
-                    if (filter === 'all') {
-                        card.classList.add('active');
-                    } else if (card.dataset.category === filter) {
-                        card.classList.add('active');
-                    } else {
-                        card.classList.remove('active');
-                    }
-                });
-            });
-        });
-
-        // Design subfilter buttons
-        subfilterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Update active button
-                subfilterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-
-                const subfilter = button.dataset.subfilter;
-
-                // Filter design projects
-                projectCards.forEach(card => {
-                    if (card.dataset.category === 'design') {
-                        if (subfilter === 'all-design') {
-                            card.classList.add('active');
-                        } else if (card.dataset.subcategory === subfilter) {
-                            card.classList.add('active');
-                        } else {
-                            card.classList.remove('active');
-                        }
-                    }
-                });
-            });
-        });
+    
 
     </script>
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.86/build/spline-viewer.js"></script>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.92/build/spline-viewer.js"></script>
+
+    <script src="Projects.js"> </script>
+    <script src="certificates.js"></script>
 </body>
 
 </html>
