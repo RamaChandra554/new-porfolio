@@ -349,7 +349,7 @@ nav a:hover::after {
     top: 0;
     right: 0;
     width: 50%;
-    height: 120%;
+    height: 140%;
     z-index: 1;
 }
 
