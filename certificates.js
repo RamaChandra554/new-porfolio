@@ -1,12 +1,20 @@
 // JSON data for certificates
 const certificatesData = [
     {
+        id: 9,
+        image: "./images/certifications/tech M.jpg",
+        title: "UI/UX development",
+        types: "Figma, Adobe Photoshop, Illustrator, HTML, CSS, JS, REACTJS",
+        description: "This certificate validates completion of a comprehensive course in UI/UX design and graphic design fundamentals.",
+        issuer: "TECH Mahindra",
+        link: "#"
+    },{
         id: 1,
         image: "./images/certifications/ux desiner.PNG",
         title: "Graphic Design and Basics of UI/UX",
         types: "Figma, Adobe Photoshop, Illustrator",
         description: "This certificate validates completion of a comprehensive course in UI/UX design and graphic design fundamentals.",
-        issuer: "Design Institute",
+        issuer: "SkillUp (simplilearn)",
         link: "#"
     },
     {
@@ -15,7 +23,7 @@ const certificatesData = [
         title: "UpSlide Figma Hackthon",
         types: "Figma",
         description: "Awarded for participation and achievement in the UpSlide Figma Hackathon competition.",
-        issuer: "UpSlide",
+        issuer: "UpSlide ",
         link: "#"
     },
     {
@@ -24,7 +32,7 @@ const certificatesData = [
         title: "Front-end Development",
         types: "HTML, CSS, GitHub, JavaScript, React",
         description: "This certificate validates completion of a comprehensive course in front-end development.",
-        issuer: "Coding Institute",
+        issuer: "SkillUp (simplilearn)",
         link: "#"
     },
     {
@@ -72,17 +80,30 @@ function generateCertificateCards() {
     certificatesData.forEach(cert => {
         const card = document.createElement('div');
         card.className = 'col-sm-6 col-lg-4';
-        card.innerHTML = `
-            <div class="card border-0 position-relative overflow-hidden">
-                <img src="${cert.image}" class="card-img-top" alt="${cert.title}">
-                <a href="#" class="stretched-link" data-bs-toggle="modal" data-bs-target="#certificate-modal" 
-                   onclick="populateModal(${cert.id})"></a>
-                <div class="card-img-overlay-custom text-center">
-                    <div class="certificate-title">${cert.title}</div>
-                    <div class="certificate-types">${cert.types}</div>
-                </div>
-            </div>
-        `;
+        // card.innerHTML = `
+        //     <div class="card border-0 position-relative overflow-hidden">
+        //         <img src="${cert.image}" class="card-img-top" alt="${cert.title}">
+        //         <a href="#" class="stretched-link" data-bs-toggle="modal" data-bs-target="#certificate-modal" 
+        //            onclick="populateModal(${cert.id})"></a>
+        //         <div class="card-img-overlay-custom text-center">
+        //             <div class="certificate-title">${cert.title}</div>
+        //             <div class="certificate-types">${cert.types}</div>
+        //         </div>
+        //     </div>
+        // `;
+    card.innerHTML = `
+    <div class="certificate-card glass active h-100"
+         data-bs-toggle="modal" 
+         data-bs-target="#certificate-modal"
+         onclick="populateModal(${cert.id})">
+
+        <div class="certificate-info card-body text-center p-3 grid">
+            <h3 class="fw-bold mb-2">${cert.title}</h3>
+            <p class=" small mb-1">${cert.types}</p><hr>
+            <p class="small mb-1">Issued by: ${cert.issuer}</p>
+        </div>
+    </div>
+`;
         container.appendChild(card);
     });
 }

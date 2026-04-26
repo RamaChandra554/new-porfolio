@@ -384,7 +384,7 @@ function generateProjectCards() {
     
     projectsData.forEach(project => {
         const card = document.createElement('div');
-        card.className = `project-card glass active`;
+        card.className = `project-card glass active p-0`;
         card.setAttribute('data-category', project.category);
         if (project.subcategory) {
             card.setAttribute('data-subcategory', project.subcategory);
